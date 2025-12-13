@@ -367,7 +367,15 @@ Each entry card shows rank, avatar/name, total points, and a per‑activity brea
 2. Create a feature branch: `git checkout -b feat/xyz`
 3. Commit with conventional messages
 4. Open a PR
-
 Please keep changes small and add context in PR description. For questions, open a Discussion.
+---
+## Demo Video
+
+
+https://github.com/user-attachments/assets/dbf04455-f85e-4748-99eb-c27f942b665b
+
+
+
+
 
 
