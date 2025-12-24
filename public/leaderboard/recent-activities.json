@@ -1,6 +1,43 @@
 {
-  "updatedAt": 1766557590474,
+  "updatedAt": 1766579502307,
   "groups": [
+    {
+      "date": "2025-12-24",
+      "items": [
+        {
+          "username": "ghanshyam2005singh",
+          "name": null,
+          "title": "feat - add hover functionality to Getting Started dropdown",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6502",
+          "avatar_url": "https://avatars.githubusercontent.com/u/56252619?v=4",
+          "points": 2
+        },
+        {
+          "username": "ghanshyam2005singh",
+          "name": null,
+          "title": "Fix - Update form control focus border and add green box-shadow",
+          "link": "https://github.com/CircuitVerse/Blog/pull/258",
+          "avatar_url": "https://avatars.githubusercontent.com/u/56252619?v=4",
+          "points": 2
+        },
+        {
+          "username": "ghanshyam2005singh",
+          "name": null,
+          "title": "Enhancement - Add hover-to-open functionality for \"Getting Started\" navbar dropdown",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/issues/6501",
+          "avatar_url": "https://avatars.githubusercontent.com/u/56252619?v=4",
+          "points": 1
+        },
+        {
+          "username": "nishant530",
+          "name": null,
+          "title": "Improve search bar UX - center alignment and inline search behavior",
+          "link": "https://github.com/CircuitVerse/CircuitVerseDocs/issues/471",
+          "avatar_url": "https://avatars.githubusercontent.com/u/206030473?v=4",
+          "points": 1
+        }
+      ]
+    },
     {
       "date": "2025-12-23",
       "items": [
