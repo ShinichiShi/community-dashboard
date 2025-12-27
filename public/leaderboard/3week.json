@@ -1,6 +1,6 @@
 {
   "period": "3week",
-  "updatedAt": 1766816548523,
+  "updatedAt": 1766838418472,
   "startDate": "2025-12-06",
   "endDate": "2025-12-27",
   "hiddenRoles": [],
@@ -11,7 +11,7 @@
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/177391853?v=4",
       "role": "Contributor",
-      "total_points": 57,
+      "total_points": 56,
       "activity_breakdown": {
         "PR opened": {
           "count": 7,
@@ -22,8 +22,8 @@
           "points": 35
         },
         "Issue opened": {
-          "count": 8,
-          "points": 8
+          "count": 7,
+          "points": 7
         }
       },
       "daily_activity": [
@@ -61,11 +61,6 @@
           "date": "2025-12-09",
           "count": 1,
           "points": 5
-        },
-        {
-          "date": "2025-12-06",
-          "count": 1,
-          "points": 1
         },
         {
           "date": "2025-12-27",
@@ -219,16 +214,6 @@
           "title": "Bug - Fix video title and YouTube UI overlap",
           "occured_at": "2025-12-18T14:29:42Z",
           "link": "https://github.com/CircuitVerse/CircuitVerseDocs/issues/466",
-          "points": 1,
-          "contributor": "Atharva7126",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/177391853?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "Feature - Replace system alert for Circuit Name entry with a themed modal",
-          "occured_at": "2025-12-06T07:26:52Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/issues/6436",
           "points": 1,
           "contributor": "Atharva7126",
           "contributor_name": null,
@@ -557,6 +542,186 @@
       ]
     },
     {
+      "username": "Git-HimanshuRathi",
+      "name": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4",
+      "role": "Contributor",
+      "total_points": 35,
+      "activity_breakdown": {
+        "PR opened": {
+          "count": 5,
+          "points": 10
+        },
+        "PR merged": {
+          "count": 4,
+          "points": 20
+        },
+        "Issue opened": {
+          "count": 5,
+          "points": 5
+        }
+      },
+      "daily_activity": [
+        {
+          "date": "2025-12-27",
+          "count": 3,
+          "points": 12
+        },
+        {
+          "date": "2025-12-26",
+          "count": 10,
+          "points": 21
+        },
+        {
+          "date": "2025-12-25",
+          "count": 1,
+          "points": 2
+        }
+      ],
+      "activities": [
+        {
+          "type": "PR opened",
+          "title": "fix - use consistent activity pill order across all contributor rows",
+          "occured_at": "2025-12-27T00:02:41Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/32",
+          "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "fix - only show role filter badge when explicit filtering is applied",
+          "occured_at": "2025-12-26T23:46:37Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/30",
+          "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "fix - add suppressHydrationWarning to body tag to prevent hydration mismatch",
+          "occured_at": "2025-12-26T23:17:49Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/28",
+          "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "fix - use absolute paths for footer social media icons",
+          "occured_at": "2025-12-26T14:32:31Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/23",
+          "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "fix - Fix footer background not spanning full viewport width",
+          "occured_at": "2025-12-25T21:26:52Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/14",
+          "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - use consistent activity pill order across all contributor rows",
+          "occured_at": "2025-12-27T09:50:37Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/32",
+          "points": 5,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - add suppressHydrationWarning to body tag to prevent hydration mismatch",
+          "occured_at": "2025-12-27T08:06:45Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/28",
+          "points": 5,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - use absolute paths for footer social media icons",
+          "occured_at": "2025-12-26T17:23:10Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/23",
+          "points": 5,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - Fix footer background not spanning full viewport width",
+          "occured_at": "2025-12-26T13:48:12Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/14",
+          "points": 5,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "Issue opened",
+          "title": "UX - Activity breakdown pills should have consistent order across all contributor rows",
+          "occured_at": "2025-12-26T23:55:48Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/31",
+          "points": 1,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "Issue opened",
+          "title": "UX - Role filter badge on Leaderboard is confusing",
+          "occured_at": "2025-12-26T23:23:39Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/29",
+          "points": 1,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "Issue opened",
+          "title": "Bug - Next.js hydration mismatch on body className",
+          "occured_at": "2025-12-26T23:05:25Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/27",
+          "points": 1,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "Issue opened",
+          "title": "Bug - Contradictory activity trend message vs. indicator badge on Home page",
+          "occured_at": "2025-12-26T16:28:15Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/24",
+          "points": 1,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "Issue opened",
+          "title": "Bug - Broken Social Media Icons in Footer",
+          "occured_at": "2025-12-26T14:23:29Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/22",
+          "points": 1,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        }
+      ]
+    },
+    {
       "username": "naman79820",
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/159947791?v=4",
@@ -748,166 +913,6 @@
           "contributor": "naman79820",
           "contributor_name": null,
           "contributor_avatar_url": "https://avatars.githubusercontent.com/u/159947791?v=4"
-        }
-      ]
-    },
-    {
-      "username": "Git-HimanshuRathi",
-      "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4",
-      "role": "Contributor",
-      "total_points": 25,
-      "activity_breakdown": {
-        "PR opened": {
-          "count": 5,
-          "points": 10
-        },
-        "PR merged": {
-          "count": 2,
-          "points": 10
-        },
-        "Issue opened": {
-          "count": 5,
-          "points": 5
-        }
-      },
-      "daily_activity": [
-        {
-          "date": "2025-12-27",
-          "count": 1,
-          "points": 2
-        },
-        {
-          "date": "2025-12-26",
-          "count": 10,
-          "points": 21
-        },
-        {
-          "date": "2025-12-25",
-          "count": 1,
-          "points": 2
-        }
-      ],
-      "activities": [
-        {
-          "type": "PR opened",
-          "title": "fix - use consistent activity pill order across all contributor rows",
-          "occured_at": "2025-12-27T00:02:41Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/32",
-          "points": 2,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "fix - only show role filter badge when explicit filtering is applied",
-          "occured_at": "2025-12-26T23:46:37Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/30",
-          "points": 2,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "fix - add suppressHydrationWarning to body tag to prevent hydration mismatch",
-          "occured_at": "2025-12-26T23:17:49Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/28",
-          "points": 2,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "fix - use absolute paths for footer social media icons",
-          "occured_at": "2025-12-26T14:32:31Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/23",
-          "points": 2,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "fix - Fix footer background not spanning full viewport width",
-          "occured_at": "2025-12-25T21:26:52Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/14",
-          "points": 2,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR merged",
-          "title": "fix - use absolute paths for footer social media icons",
-          "occured_at": "2025-12-26T17:23:10Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/23",
-          "points": 5,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "PR merged",
-          "title": "fix - Fix footer background not spanning full viewport width",
-          "occured_at": "2025-12-26T13:48:12Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/14",
-          "points": 5,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "UX - Activity breakdown pills should have consistent order across all contributor rows",
-          "occured_at": "2025-12-26T23:55:48Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/31",
-          "points": 1,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "UX - Role filter badge on Leaderboard is confusing",
-          "occured_at": "2025-12-26T23:23:39Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/29",
-          "points": 1,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "Bug - Next.js hydration mismatch on body className",
-          "occured_at": "2025-12-26T23:05:25Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/27",
-          "points": 1,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "Bug - Contradictory activity trend message vs. indicator badge on Home page",
-          "occured_at": "2025-12-26T16:28:15Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/24",
-          "points": 1,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
-        },
-        {
-          "type": "Issue opened",
-          "title": "Bug - Broken Social Media Icons in Footer",
-          "occured_at": "2025-12-26T14:23:29Z",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/22",
-          "points": 1,
-          "contributor": "Git-HimanshuRathi",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
         }
       ]
     },
@@ -2104,6 +2109,38 @@
       ]
     },
     {
+      "username": "h30s",
+      "name": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4",
+      "role": "Contributor",
+      "total_points": 5,
+      "activity_breakdown": {
+        "PR merged": {
+          "count": 1,
+          "points": 5
+        }
+      },
+      "daily_activity": [
+        {
+          "date": "2025-12-27",
+          "count": 1,
+          "points": 5
+        }
+      ],
+      "activities": [
+        {
+          "type": "PR merged",
+          "title": "Fix undefined method 'project_url' error in JSON jbuilder",
+          "occured_at": "2025-12-27T08:25:02Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6431",
+          "points": 5,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        }
+      ]
+    },
+    {
       "username": "SouparnaChatterjee",
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/115988950?v=4",
@@ -3247,38 +3284,6 @@
           "contributor": "satu0king",
           "contributor_name": null,
           "contributor_avatar_url": "https://avatars.githubusercontent.com/u/2092958?v=4"
-        }
-      ]
-    },
-    {
-      "username": "ritiksingh3202",
-      "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/213921109?v=4",
-      "role": "Contributor",
-      "total_points": 1,
-      "activity_breakdown": {
-        "Issue opened": {
-          "count": 1,
-          "points": 1
-        }
-      },
-      "daily_activity": [
-        {
-          "date": "2025-12-06",
-          "count": 1,
-          "points": 1
-        }
-      ],
-      "activities": [
-        {
-          "type": "Issue opened",
-          "title": "🐞 Bug - On click over the logo icon it does not redirect to Home page",
-          "occured_at": "2025-12-06T09:49:21Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/issues/6437",
-          "points": 1,
-          "contributor": "ritiksingh3202",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/213921109?v=4"
         }
       ]
     },

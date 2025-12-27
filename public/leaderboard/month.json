@@ -1,6 +1,6 @@
 {
   "period": "month",
-  "updatedAt": 1766816548525,
+  "updatedAt": 1766838418475,
   "startDate": "2025-11-27",
   "endDate": "2025-12-27",
   "hiddenRoles": [],
@@ -951,15 +951,15 @@
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4",
       "role": "Contributor",
-      "total_points": 25,
+      "total_points": 35,
       "activity_breakdown": {
         "PR opened": {
           "count": 5,
           "points": 10
         },
         "PR merged": {
-          "count": 2,
-          "points": 10
+          "count": 4,
+          "points": 20
         },
         "Issue opened": {
           "count": 5,
@@ -969,8 +969,8 @@
       "daily_activity": [
         {
           "date": "2025-12-27",
-          "count": 1,
-          "points": 2
+          "count": 3,
+          "points": 12
         },
         {
           "date": "2025-12-26",
@@ -1030,6 +1030,26 @@
           "occured_at": "2025-12-25T21:26:52Z",
           "link": "https://github.com/CircuitVerse/community-dashboard/pull/14",
           "points": 2,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - use consistent activity pill order across all contributor rows",
+          "occured_at": "2025-12-27T09:50:37Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/32",
+          "points": 5,
+          "contributor": "Git-HimanshuRathi",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "fix - add suppressHydrationWarning to body tag to prevent hydration mismatch",
+          "occured_at": "2025-12-27T08:06:45Z",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/28",
+          "points": 5,
           "contributor": "Git-HimanshuRathi",
           "contributor_name": null,
           "contributor_avatar_url": "https://avatars.githubusercontent.com/u/194053810?v=4"
@@ -1338,6 +1358,107 @@
           "contributor": "ghanshyam2005singh",
           "contributor_name": null,
           "contributor_avatar_url": "https://avatars.githubusercontent.com/u/56252619?v=4"
+        }
+      ]
+    },
+    {
+      "username": "h30s",
+      "name": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4",
+      "role": "Contributor",
+      "total_points": 18,
+      "activity_breakdown": {
+        "PR opened": {
+          "count": 4,
+          "points": 8
+        },
+        "PR merged": {
+          "count": 2,
+          "points": 10
+        }
+      },
+      "daily_activity": [
+        {
+          "date": "2025-12-05",
+          "count": 3,
+          "points": 6
+        },
+        {
+          "date": "2025-12-04",
+          "count": 1,
+          "points": 2
+        },
+        {
+          "date": "2025-11-30",
+          "count": 1,
+          "points": 5
+        },
+        {
+          "date": "2025-12-27",
+          "count": 1,
+          "points": 5
+        }
+      ],
+      "activities": [
+        {
+          "type": "PR opened",
+          "title": "Fix S3 AccessDenied errors crashing the application",
+          "occured_at": "2025-12-05T14:47:03Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6432",
+          "points": 2,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "Fix undefined method 'project_url' error in JSON jbuilder",
+          "occured_at": "2025-12-05T14:03:53Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6431",
+          "points": 2,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "fix - Handle JSON - - ParserError for truncated project data",
+          "occured_at": "2025-12-05T06:40:22Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6427",
+          "points": 2,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        },
+        {
+          "type": "PR opened",
+          "title": "Fix - Handle JSON - - ParserError in sim_version to prevent crashes",
+          "occured_at": "2025-12-04T18:09:00Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6425",
+          "points": 2,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "LTI - guard score submission when outcome URL or sourced ID is missing to prevent URI - - InvalidURIError (fixes #6284)",
+          "occured_at": "2025-11-30T16:12:48Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6340",
+          "points": 5,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
+        },
+        {
+          "type": "PR merged",
+          "title": "Fix undefined method 'project_url' error in JSON jbuilder",
+          "occured_at": "2025-12-27T08:25:02Z",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6431",
+          "points": 5,
+          "contributor": "h30s",
+          "contributor_name": null,
+          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
         }
       ]
     },
@@ -1797,92 +1918,6 @@
           "contributor": "Nihal4777",
           "contributor_name": null,
           "contributor_avatar_url": "https://avatars.githubusercontent.com/u/65150640?v=4"
-        }
-      ]
-    },
-    {
-      "username": "h30s",
-      "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4",
-      "role": "Contributor",
-      "total_points": 13,
-      "activity_breakdown": {
-        "PR opened": {
-          "count": 4,
-          "points": 8
-        },
-        "PR merged": {
-          "count": 1,
-          "points": 5
-        }
-      },
-      "daily_activity": [
-        {
-          "date": "2025-12-05",
-          "count": 3,
-          "points": 6
-        },
-        {
-          "date": "2025-12-04",
-          "count": 1,
-          "points": 2
-        },
-        {
-          "date": "2025-11-30",
-          "count": 1,
-          "points": 5
-        }
-      ],
-      "activities": [
-        {
-          "type": "PR opened",
-          "title": "Fix S3 AccessDenied errors crashing the application",
-          "occured_at": "2025-12-05T14:47:03Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6432",
-          "points": 2,
-          "contributor": "h30s",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "Fix undefined method 'project_url' error in JSON jbuilder",
-          "occured_at": "2025-12-05T14:03:53Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6431",
-          "points": 2,
-          "contributor": "h30s",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "fix - Handle JSON - - ParserError for truncated project data",
-          "occured_at": "2025-12-05T06:40:22Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6427",
-          "points": 2,
-          "contributor": "h30s",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
-        },
-        {
-          "type": "PR opened",
-          "title": "Fix - Handle JSON - - ParserError in sim_version to prevent crashes",
-          "occured_at": "2025-12-04T18:09:00Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6425",
-          "points": 2,
-          "contributor": "h30s",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
-        },
-        {
-          "type": "PR merged",
-          "title": "LTI - guard score submission when outcome URL or sourced ID is missing to prevent URI - - InvalidURIError (fixes #6284)",
-          "occured_at": "2025-11-30T16:12:48Z",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6340",
-          "points": 5,
-          "contributor": "h30s",
-          "contributor_name": null,
-          "contributor_avatar_url": "https://avatars.githubusercontent.com/u/183348352?v=4"
         }
       ]
     },
