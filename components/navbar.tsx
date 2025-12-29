@@ -83,7 +83,13 @@ const Navbar = ({ config }: NavbarProps) => {
               target="_blank"
             >
               <Button variant={"outline"} size={"icon"}>
-                <Github className="h-4 w-4" />
+                <Image
+                  src="/github.svg"
+                  alt="GitHub"
+                  width={17}
+                  height={17}
+                  className="dark:invert cursor-pointer hover:opacity-80 transition-opacity"
+                />
               </Button>
             </Link>
             <ThemeSelector />
