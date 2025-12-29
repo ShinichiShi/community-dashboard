@@ -78,18 +78,30 @@ export function ContributorDetail({ contributor, onBack }: ContributorDetailProp
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   
-  for (let i = 0; i < sortedDates.length; i++) {
-    const dateEntry = sortedDates[i];
-    if (!dateEntry) break;
-    
-    const activityDate = new Date(dateEntry.date);
+  // Remove duplicate dates to avoid counting same day multiple times
+  const uniqueDates = Array.from(new Set(sortedDates.map(d => d.date)));
+  
+  let expectedDaysDiff = 0; // Start expecting today (0 days ago)
+  const foundToday = false;
+  
+  for (const dateStr of uniqueDates) {
+    const activityDate = new Date(dateStr);
     activityDate.setHours(0, 0, 0, 0);
     const daysDiff = Math.floor((today.getTime() - activityDate.getTime()) / (1000 * 60 * 60 * 24));
     
-    if (daysDiff === i || (daysDiff === i + 1 && i === 0)) {
+    // Accept first activity if it's today (0) or yesterday (1)
+    if (currentStreak === 0 && (daysDiff === 0 || daysDiff === 1)) {
       currentStreak++;
+      expectedDaysDiff = daysDiff + 1; // Next expected is one day earlier
+      continue;
+    }
+    
+    // For subsequent activities, require exact consecutive days
+    if (daysDiff === expectedDaysDiff) {
+      currentStreak++;
+      expectedDaysDiff++; // Expect next day to be one day earlier
     } else {
-      break;
+      break; // Streak broken
     }
   }
 

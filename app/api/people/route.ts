@@ -38,11 +38,18 @@ export async function GET() {
         }
 
         for (const entry of data.entries || []) {
-          if (entry.username.includes('[bot]') || 
-              entry.username.includes('bot') || 
-              entry.username.includes('dependabot') ||
-              entry.username.includes('renovate') ||
-              entry.username.includes('github-actions')) {
+          // More precise bot filtering to avoid filtering legitimate users
+          const username = entry.username.toLowerCase();
+          const isBot = username.endsWith('[bot]') || 
+                       username.endsWith('-bot') || 
+                       username.endsWith('_bot') ||
+                       username === 'dependabot' ||
+                       username === 'renovate' ||
+                       username === 'github-actions' ||
+                       username.startsWith('renovate[') ||
+                       username.startsWith('dependabot[');
+          
+          if (isBot) {
             continue;
           }
 

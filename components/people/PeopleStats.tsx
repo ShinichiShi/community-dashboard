@@ -143,7 +143,7 @@ export function PeopleStats({ contributors, onContributorClick }: PeopleStatsPro
               <div>
                 <p className="text-md text-white/80">Active This Year</p>
                 <p className="text-2xl font-bold text-white">{recentlyActive}</p>
-                <p className="text-sm text-white/70">{Math.round((recentlyActive/totalContributors)*100)}% of community</p>
+                <p className="text-sm text-white/70">{totalContributors > 0 ? Math.round((recentlyActive/totalContributors)*100) : 0}% of community</p>
               </div>
             </div>
           </CardContent>
