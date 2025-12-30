@@ -116,7 +116,7 @@ export function LeaderboardCard({
             isTopThree ? "animate-pulse-rank" : styles.border,
             "hover:shadow-2xl hover:-translate-y-1"
           )}
-          onClick={() => window.open(`https://github.com/${entry.username}`, '_blank')}
+        onClick={() => window.open(`https://github.com/${entry.username}`, '_blank', 'noopener,noreferrer')}
         >
           {/* Glossy Shine Effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -217,7 +217,7 @@ export function LeaderboardCard({
           isTopThree ? "animate-pulse-rank" : styles.border,
           "hover:shadow-2xl hover:scale-[1.02] hover:-translate-y-1"
         )}
-        onClick={() => window.open(`https://github.com/${entry.username}`, '_blank')}
+        onClick={() => window.open(`https://github.com/${entry.username}`, '_blank', 'noopener,noreferrer')}
       >
       {/* Glossy Shine Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
