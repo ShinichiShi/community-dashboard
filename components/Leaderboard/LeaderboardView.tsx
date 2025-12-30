@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { Medal, Trophy, Filter, X, Search, Grid3X3, List } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { LeaderboardCard } from "./LeaderboardCard";
@@ -71,21 +71,24 @@ export default function LeaderboardView({
   // Search query state
   const [searchQuery, setSearchQuery] = useState("");
   
-  // View mode state with persistence
   const [viewMode, setViewMode] = useState<"grid" | "list">(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('leaderboard-view-mode');
-      return (saved as "grid" | "list") || "grid";
+      if (saved === "grid" || saved === "list") {
+        return saved;
+      }
     }
     return "grid";
   });
   
-  // Update localStorage when view mode changes
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('leaderboard-view-mode', viewMode);
+    }
+  }, [viewMode]);
+  
   const handleViewModeChange = (mode: "grid" | "list") => {
     setViewMode(mode);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('leaderboard-view-mode', mode);
-    }
   };
 
   // Get selected roles from query params

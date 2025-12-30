@@ -144,7 +144,7 @@ export function LeaderboardCard({
                     alt={entry.name || entry.username}
                     className="object-cover"
                   />
-                  <AvatarFallback className="bg-linear-to-br from-[#42B883]/20 to-[#42B883]/10 text-[#42B883] font-semibold text-xs sm:text-lg">
+                  <AvatarFallback className="bg-gradient-to-br from-[#42B883]/20 to-[#42B883]/10 text-[#42B883] font-semibold text-xs sm:text-lg">
                     {(entry.name || entry.username)
                       .substring(0, 2)
                       .toUpperCase()}
@@ -231,7 +231,7 @@ export function LeaderboardCard({
                 alt={entry.name || entry.username}
                 className="object-cover"
               />
-              <AvatarFallback className="bg-linear-to-br from-[#42B883]/20 to-[#42B883]/10 text-[#42B883] font-semibold text-sm">
+              <AvatarFallback className="bg-gradient-to-br from-[#42B883]/20 to-[#42B883]/10 text-[#42B883] font-semibold text-sm">
                 {(entry.name || entry.username)
                   .substring(0, 2)
                   .toUpperCase()}
