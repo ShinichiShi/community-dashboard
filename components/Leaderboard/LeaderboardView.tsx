@@ -448,22 +448,18 @@ useEffect(() => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex gap-8">
         {/* Main Content */}
         <div className="flex-1 min-w-0">
           {/* Header */}
-          <div className="mb-8 text-center">
-            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-6">
-              <div className="min-w-0 text-center md:text-left">
-                <h1 className="text-4xl font-bold mb-2">
-                  <span className="text-black dark:text-white">{periodLabels[period]} </span>
-                  <span className="text-[#42B883]">Leaderboard</span>
+          <div className="mb-8">
+            <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between mb-4">
+              <div className="min-w-0">
+                <h1 className="text-4xl text-[#50B78B] font-bold mb-2">
+                  {periodLabels[period]} Leaderboard
                 </h1>
-                <p className="text-lg text-muted-foreground mb-2">
-                  Celebrating our amazing community contributors
-                </p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground">
                   {filteredEntries.length} of {entries.length} contributors
                   {(selectedRoles.size > 0 || searchQuery) && " (filtered)"}
                 </p>
@@ -492,6 +488,35 @@ useEffect(() => {
                     />
                   </div>
 
+                  <div className="w-fit self-center sm:self-auto flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
+                    <Button
+                      variant={viewMode === "grid" ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => handleViewModeChange("grid")}
+                      className={cn(
+                        "h-8 px-3",
+                        viewMode === "grid" 
+                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
+                      )}
+                    >
+                      <Grid3X3 className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant={viewMode === "list" ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => handleViewModeChange("list")}
+                      className={cn(
+                        "h-8 px-3",
+                        viewMode === "list" 
+                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
+                      )}
+                    >
+                      <List className="h-4 w-4" />
+                    </Button>
+                  </div>
+
                   <div className="hidden sm:flex">
                     <button
                       type="button"
@@ -508,51 +533,6 @@ useEffect(() => {
                       </span>
                     </button>
                   </div>
-              <div className="flex flex-col gap-3 w-full sm:w-auto sm:flex-row sm:items-center sm:justify-end">
-                
-              <div className="w-fit self-center sm:self-auto flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
-                   <Button
-                    variant={viewMode === "grid" ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => handleViewModeChange("grid")}
-                    className={cn(
-                      "h-8 px-3",
-                      viewMode === "grid" 
-                        ? "bg-[#42B883] hover:bg-[#369970] text-white" 
-                        : "hover:bg-[#42B883]/10 text-muted-foreground"
-                    )}
-                  >
-                    <Grid3X3 className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant={viewMode === "list" ? "default" : "ghost"}
-                    size="sm"
-                    onClick={() => handleViewModeChange("list")}
-                    className={cn(
-                      "h-8 px-3",
-                      viewMode === "list" 
-                        ? "bg-[#42B883] hover:bg-[#369970] text-white" 
-                        : "hover:bg-[#42B883]/10 text-muted-foreground"
-                    )}
-                  >
-                    <List className="h-4 w-4" />
-                  </Button>
-                 
-                </div>
-
-                {/* Search Bar */}
-                <div className="relative w-full sm:flex-1 sm:min-w-0 md:w-[16rem]">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    type="text"
-                    placeholder="Search contributors..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className={cn(
-                      "pl-9 h-9 w-full bg-white dark:bg-[#07170f] border border-[#42B883]/60 dark:border-[#42B883]/40 text-foreground dark:text-foreground shadow-sm dark:shadow-none outline-none focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#42B883] focus-visible:ring-offset-0 transition-colors",
-                     "sm:w-full"
-                    )}
-                  />
                 </div>
 
                 <div className="flex items-center gap-2 justify-end">
@@ -722,21 +702,11 @@ useEffect(() => {
 
           {/* Leaderboard */}
           {filteredEntries.length === 0 ? (
-            <Card className="border-[#42B883]/20">
-              <CardContent className="py-16 text-center">
-                <div className="w-24 h-24 mx-auto mb-6 opacity-20">
-                  <Trophy className="w-full h-full text-[#42B883]" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-muted-foreground">
-                  {entries.length === 0
-                    ? "No contributors with points in this period"
-                    : "No contributors match the selected filters"}
-                </h3>
-                <p className="text-muted-foreground max-w-md mx-auto">
-                  {entries.length === 0
-                    ? "Check back later as contributors start earning points through their activities."
-                    : "Try adjusting your search or filter criteria to find more contributors."}
-                </p>
+            <Card>
+              <CardContent className="py-12 text-center text-muted-foreground">
+                {entries.length === 0
+                  ? "No contributors with points in this period"
+                  : "No contributors match the selected filters"}
               </CardContent>
             </Card>
           ) : (
@@ -754,143 +724,12 @@ useEffect(() => {
                 return (
                   <LeaderboardCard
                     key={entry.username}
-                    className={cn(
-                      "transition-all hover:shadow-md",
-                      isTopThree && "border-[#50B78B]/50"
-                    )}
-                  >
-                    <CardContent>
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-
-                        {/* Rank */}
-                        <div className="flex items-center justify-center size-12 shrink-0">
-                          {getRankIcon(rank) || (
-                            <span className="text-2xl font-bold text-[#50B78B]">
-                              {rank}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Avatar - NOW CLICKABLE */}
-                        <a
-                          href={`https://github.com/${entry.username}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0"
-                        >
-                          <Avatar className="size-14 hover:ring-2 hover:ring-[#50B78B] transition-all cursor-pointer">
-                            <AvatarImage
-                              src={entry.avatar_url || undefined}
-                              alt={entry.name || entry.username}
-                            />
-                            <AvatarFallback>
-                              {(entry.name || entry.username)
-                                .substring(0, 2)
-                                .toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                        </a>
-
-                        {/* Contributor Info */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap mb-1">
-                            <h3 className="text-lg font-semibold">
-                              {entry.name || entry.username}
-                            </h3>
-                            {entry.role && (
-                              <span className="text-xs px-2 py-1 rounded-full bg-[#50B78B]/10 text-[#50B78B]">
-                                {entry.role}
-                              </span>
-                            )}
-                          </div>
-
-                          <a
-                            href={`https://github.com/${entry.username}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-muted-foreground hover:text-[#50B78B] transition-colors"
-                          >
-                            @{entry.username}
-                          </a>
-
-                          <div className="mb-3" />
-
-                          {/* Activity Breakdown - Enhanced with visual distinction */}
-                          <div className="flex flex-wrap gap-2">
-                            {Object.entries(entry.activity_breakdown)
-                              .sort((a, b) => {
-                                const activityPriority: Record<string, number> = {
-                                  "PR merged": 1,
-                                  "PR opened": 2,
-                                  "Issue opened": 3,
-                                };
-                                const priorityA = activityPriority[a[0]] ?? 99;
-                                const priorityB = activityPriority[b[0]] ?? 99;
-                                if (priorityA !== priorityB) {
-                                  return priorityA - priorityB;
-                                }
-                                return a[0].localeCompare(b[0]);
-                              })
-                              .map(([activityName, data]) => {
-                                const style = getActivityStyle(activityName);
-                                const IconComponent = style.icon;
-                                
-                                return (
-                                  <div
-                                    key={activityName}
-                                    className={cn(
-                                      "relative text-xs px-3 py-1.5 rounded-md border-l-2 transition-all hover:shadow-sm",
-                                      style.bgColor,
-                                      style.borderColor
-                                    )}
-                                  >
-                                    <div className="flex items-center gap-1.5">
-                                      {IconComponent && (
-                                        <IconComponent className={cn("w-3.5 h-3.5", style.textColor)} />
-                                      )}
-                                      <span className={cn("font-semibold", style.textColor)}>
-                                        {activityName}:
-                                      </span>
-                                      <span className="text-muted-foreground font-medium">
-                                        {data.count}
-                                      </span>
-                                      {data.points > 0 && (
-                                        <span className={cn("ml-0.5 font-bold", style.textColor)}>
-                                          (+{data.points})
-                                        </span>
-                                      )}
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                          </div>
-                        </div>
-
-                        {/* Total Points with Trend Chart */}
-                        <div className="flex items-center gap-4 shrink-0">
-                          <div className="hidden sm:block">
-                          {entry.daily_activity &&
-                            entry.daily_activity.length > 0 && (
-                              <ActivityTrendChart
-                                dailyActivity={entry.daily_activity}
-                                startDate={startDate}
-                                endDate={endDate}
-                                mode="points"
-                              />
-                            )}
-                          </div>
-                          <div className="text-right">
-                            <div className="text-3xl font-bold text-[#50B78B]">
-                              {entry.total_points}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              points
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    entry={entry}
+                    rank={rank}
+                    startDate={startDate}
+                    endDate={endDate}
+                    variant={viewMode === "grid" ? "grid" : "list"}
+                  />
                 );
               })}
             </div>
@@ -998,10 +837,7 @@ useEffect(() => {
         {Object.keys(filteredTopByActivity).length > 0 && (
           <div className="hidden xl:block w-80 shrink-0">
             <div>
-              <h2 className="text-xl font-bold mb-6">
-                <span className="text-black dark:text-white">Top </span>
-                <span className="text-[#42B883]">Contributors</span>
-              </h2>
+              <h2 className="text-xl font-bold mb-6">Top Contributors</h2>
               <div className="space-y-4">
                 {Object.entries(filteredTopByActivity).map(
                   ([activityName, contributors]) => {
