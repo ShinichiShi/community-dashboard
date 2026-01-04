@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1767523648399,
+  "updatedAt": 1767529617718,
   "groups": [
     [
       "2025-12-23",
@@ -801,12 +801,12 @@
           "points": 2
         },
         {
-          "username": "star-warrior",
+          "username": "Ayush1169",
           "name": null,
-          "title": "feat - Implement 'Import Online Circuit' in Simulator",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6561",
-          "avatar_url": "https://avatars.githubusercontent.com/u/69752445?v=4",
-          "points": 2
+          "title": "Add debounced search to leaderboard for improved performance",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
+          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
+          "points": 5
         },
         {
           "username": "Ayush1169",
@@ -823,6 +823,14 @@
           "link": "https://github.com/CircuitVerse/community-dashboard/issues/100",
           "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
           "points": 1
+        },
+        {
+          "username": "star-warrior",
+          "name": null,
+          "title": "feat - Implement 'Import Online Circuit' in Simulator",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6561",
+          "avatar_url": "https://avatars.githubusercontent.com/u/69752445?v=4",
+          "points": 2
         },
         {
           "username": "Abdul-Raheem324",
@@ -1038,6 +1046,30 @@
           "points": 1
         },
         {
+          "username": "Ayush1169",
+          "name": null,
+          "title": "Add debounced search to leaderboard for improved performance",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
+          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
+          "points": 2
+        },
+        {
+          "username": "Ayush1169",
+          "name": null,
+          "title": "fix - remove black hover from back button in username section issue #64",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/81",
+          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
+          "points": 2
+        },
+        {
+          "username": "Ayush1169",
+          "name": null,
+          "title": "Improve leaderboard search performance by adding debounce",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/83",
+          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
+          "points": 1
+        },
+        {
           "username": "star-warrior",
           "name": null,
           "title": "feat - Implement 'Import Online Circuit' in Simulator",
@@ -1076,30 +1108,6 @@
           "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6550",
           "avatar_url": "https://avatars.githubusercontent.com/u/210567772?v=4",
           "points": 2
-        },
-        {
-          "username": "Ayush1169",
-          "name": null,
-          "title": "Add debounced search to leaderboard for improved performance",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
-          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
-          "points": 2
-        },
-        {
-          "username": "Ayush1169",
-          "name": null,
-          "title": "fix - remove black hover from back button in username section issue #64",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/81",
-          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
-          "points": 2
-        },
-        {
-          "username": "Ayush1169",
-          "name": null,
-          "title": "Improve leaderboard search performance by adding debounce",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/83",
-          "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
-          "points": 1
         },
         {
           "username": "gautamsidhwani29",

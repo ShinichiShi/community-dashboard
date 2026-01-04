@@ -1,6 +1,6 @@
 {
   "period": "month",
-  "updatedAt": 1767523648396,
+  "updatedAt": 1767529617715,
   "startDate": "2025-12-05",
   "endDate": "2026-01-04",
   "hiddenRoles": [],
@@ -591,11 +591,11 @@
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/159947791?v=4",
       "role": "Contributor",
-      "total_points": 69,
+      "total_points": 67,
       "activity_breakdown": {
         "PR opened": {
-          "count": 12,
-          "points": 24
+          "count": 11,
+          "points": 22
         },
         "PR merged": {
           "count": 6,
@@ -636,11 +636,6 @@
           "date": "2025-12-06",
           "count": 2,
           "points": 3
-        },
-        {
-          "date": "2025-12-05",
-          "count": 1,
-          "points": 2
         },
         {
           "date": "2026-01-04",
@@ -738,13 +733,6 @@
           "occured_at": "2025-12-06T18:13:43Z",
           "title": "Fix missing project_url error by adding shallow routes for projects",
           "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6439",
-          "points": 2
-        },
-        {
-          "type": "PR opened",
-          "occured_at": "2025-12-05T11:54:17Z",
-          "title": "Fix pagination ArgumentError when page parameter is empty #6426",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6429",
           "points": 2
         },
         {
@@ -2617,70 +2605,6 @@
       ]
     },
     {
-      "username": "salmoneatenbybear",
-      "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/177742943?v=4",
-      "role": "Contributor",
-      "total_points": 14,
-      "activity_breakdown": {
-        "PR opened": {
-          "count": 2,
-          "points": 4
-        },
-        "PR merged": {
-          "count": 2,
-          "points": 10
-        }
-      },
-      "daily_activity": [
-        {
-          "date": "2025-12-07",
-          "count": 1,
-          "points": 2
-        },
-        {
-          "date": "2025-12-05",
-          "count": 2,
-          "points": 7
-        },
-        {
-          "date": "2025-12-08",
-          "count": 1,
-          "points": 5
-        }
-      ],
-      "activities": [
-        {
-          "type": "PR opened",
-          "occured_at": "2025-12-07T13:56:17Z",
-          "title": "chore - About page members restructuring",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6444",
-          "points": 2
-        },
-        {
-          "type": "PR opened",
-          "occured_at": "2025-12-05T11:26:38Z",
-          "title": "chore - update about page with new core team members and remove old issue triaging team.",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6428",
-          "points": 2
-        },
-        {
-          "type": "PR merged",
-          "occured_at": "2025-12-08T03:43:45Z",
-          "title": "chore - About page members restructuring",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6444",
-          "points": 5
-        },
-        {
-          "type": "PR merged",
-          "occured_at": "2025-12-05T13:12:16Z",
-          "title": "chore - update about page with new core team members and remove old issue triaging team.",
-          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6428",
-          "points": 5
-        }
-      ]
-    },
-    {
       "username": "akshitvigg",
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/156829501?v=4",
@@ -2927,6 +2851,140 @@
           "title": "fix - make leaderboard filters responsive on mobile",
           "link": "https://github.com/CircuitVerse/community-dashboard/pull/21",
           "points": 5
+        }
+      ]
+    },
+    {
+      "username": "salmoneatenbybear",
+      "name": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/177742943?v=4",
+      "role": "Contributor",
+      "total_points": 12,
+      "activity_breakdown": {
+        "PR opened": {
+          "count": 1,
+          "points": 2
+        },
+        "PR merged": {
+          "count": 2,
+          "points": 10
+        }
+      },
+      "daily_activity": [
+        {
+          "date": "2025-12-07",
+          "count": 1,
+          "points": 2
+        },
+        {
+          "date": "2025-12-08",
+          "count": 1,
+          "points": 5
+        },
+        {
+          "date": "2025-12-05",
+          "count": 1,
+          "points": 5
+        }
+      ],
+      "activities": [
+        {
+          "type": "PR opened",
+          "occured_at": "2025-12-07T13:56:17Z",
+          "title": "chore - About page members restructuring",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6444",
+          "points": 2
+        },
+        {
+          "type": "PR merged",
+          "occured_at": "2025-12-08T03:43:45Z",
+          "title": "chore - About page members restructuring",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6444",
+          "points": 5
+        },
+        {
+          "type": "PR merged",
+          "occured_at": "2025-12-05T13:12:16Z",
+          "title": "chore - update about page with new core team members and remove old issue triaging team.",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6428",
+          "points": 5
+        }
+      ]
+    },
+    {
+      "username": "Ayush1169",
+      "name": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
+      "role": "Contributor",
+      "total_points": 12,
+      "activity_breakdown": {
+        "PR opened": {
+          "count": 2,
+          "points": 4
+        },
+        "PR merged": {
+          "count": 1,
+          "points": 5
+        },
+        "Issue opened": {
+          "count": 3,
+          "points": 3
+        }
+      },
+      "daily_activity": [
+        {
+          "date": "2026-01-03",
+          "count": 3,
+          "points": 5
+        },
+        {
+          "date": "2026-01-04",
+          "count": 3,
+          "points": 7
+        }
+      ],
+      "activities": [
+        {
+          "type": "PR opened",
+          "occured_at": "2026-01-03T10:49:21Z",
+          "title": "Add debounced search to leaderboard for improved performance",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
+          "points": 2
+        },
+        {
+          "type": "PR opened",
+          "occured_at": "2026-01-03T06:58:33Z",
+          "title": "fix - remove black hover from back button in username section issue #64",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/81",
+          "points": 2
+        },
+        {
+          "type": "PR merged",
+          "occured_at": "2026-01-04T11:12:58Z",
+          "title": "Add debounced search to leaderboard for improved performance",
+          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
+          "points": 5
+        },
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-04T09:04:12Z",
+          "title": "Make Recent Activity items fully clickable (title & avatar)",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/102",
+          "points": 1
+        },
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-04T08:13:39Z",
+          "title": "Make leaderboard activity badges clickable to GitHub",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/100",
+          "points": 1
+        },
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-03T09:56:28Z",
+          "title": "Improve leaderboard search performance by adding debounce",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/83",
+          "points": 1
         }
       ]
     },
@@ -3544,72 +3602,6 @@
           "title": "fix - update Brewfile for current homebrew versions",
           "link": "https://github.com/CircuitVerse/CircuitVerse/pull/6478",
           "points": 5
-        }
-      ]
-    },
-    {
-      "username": "Ayush1169",
-      "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/188789872?v=4",
-      "role": "Contributor",
-      "total_points": 7,
-      "activity_breakdown": {
-        "PR opened": {
-          "count": 2,
-          "points": 4
-        },
-        "Issue opened": {
-          "count": 3,
-          "points": 3
-        }
-      },
-      "daily_activity": [
-        {
-          "date": "2026-01-03",
-          "count": 3,
-          "points": 5
-        },
-        {
-          "date": "2026-01-04",
-          "count": 2,
-          "points": 2
-        }
-      ],
-      "activities": [
-        {
-          "type": "PR opened",
-          "occured_at": "2026-01-03T10:49:21Z",
-          "title": "Add debounced search to leaderboard for improved performance",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/85",
-          "points": 2
-        },
-        {
-          "type": "PR opened",
-          "occured_at": "2026-01-03T06:58:33Z",
-          "title": "fix - remove black hover from back button in username section issue #64",
-          "link": "https://github.com/CircuitVerse/community-dashboard/pull/81",
-          "points": 2
-        },
-        {
-          "type": "Issue opened",
-          "occured_at": "2026-01-04T09:04:12Z",
-          "title": "Make Recent Activity items fully clickable (title & avatar)",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/102",
-          "points": 1
-        },
-        {
-          "type": "Issue opened",
-          "occured_at": "2026-01-04T08:13:39Z",
-          "title": "Make leaderboard activity badges clickable to GitHub",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/100",
-          "points": 1
-        },
-        {
-          "type": "Issue opened",
-          "occured_at": "2026-01-03T09:56:28Z",
-          "title": "Improve leaderboard search performance by adding debounce",
-          "link": "https://github.com/CircuitVerse/community-dashboard/issues/83",
-          "points": 1
         }
       ]
     },
