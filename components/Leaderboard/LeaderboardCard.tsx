@@ -99,12 +99,14 @@ export function LeaderboardCard({
   const getRankStyles = (rank: number) => {
     if (rank <= 3) {
       return {
-        border: "border-[#50B78B]/50" 
+        border: "border-[#50B78B]/50",
+        iconBg: "bg-[#42B883]/10"
       };
     }
     
     return {
-      border: ""
+      border: "",
+      iconBg: "bg-[#42B883]"
     };
   };
 
