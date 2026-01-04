@@ -9,12 +9,32 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Link from "next/link";
-import { Medal, Trophy, Filter, X, Search, Grid3X3, List } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+  X,
+  Medal,
+  Trophy,
+  GitMerge,
+  GitPullRequest,
+  AlertCircle,
+  Search, Grid3X3, List
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { sortEntries, type SortBy } from "@/lib/leaderboard";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import ActivityTrendChart from "../../components/Leaderboard/ActivityTrendChart";
 import { Input } from "@/components/ui/input";
 import { LeaderboardCard } from "./LeaderboardCard";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export type LeaderboardEntry = {
   username: string;
@@ -33,7 +53,7 @@ export type LeaderboardEntry = {
   >;
 
   daily_activity?: Array<{
-    date: string; // ISO string
+    date: string;
     points: number;
     count: number;
   }>;
@@ -57,6 +77,57 @@ interface LeaderboardViewProps {
   hiddenRoles: string[];
 }
 
+// Activity type styling configuration
+const activityStyles: Record<string, {
+  icon: React.ComponentType<{ className?: string }>;
+  bgColor: string;
+  textColor: string;
+  borderColor: string;
+}> = {
+  "PR merged": {
+    icon: GitMerge,
+    bgColor: "bg-purple-500/10 dark:bg-purple-500/15",
+    textColor: "text-purple-700 dark:text-purple-400",
+    borderColor: "border-l-purple-500"
+  },
+  "PR opened": {
+    icon: GitPullRequest,
+    bgColor: "bg-blue-500/10 dark:bg-blue-500/15",
+    textColor: "text-blue-700 dark:text-blue-400",
+    borderColor: "border-l-blue-500"
+  },
+  "Issue opened": {
+    icon: AlertCircle,
+    bgColor: "bg-orange-500/10 dark:bg-orange-500/15",
+    textColor: "text-orange-700 dark:text-orange-400",
+    borderColor: "border-l-orange-500"
+  }
+};
+
+const getActivityStyle = (activityName: string) => {
+  return activityStyles[activityName] || {
+    icon: () => null,
+    bgColor: "bg-muted",
+    textColor: "text-muted-foreground",
+    borderColor: "border-l-gray-400"
+  };
+};
+
+function useDebounce<T>(value: T, delay = 400): T {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
+
 export default function LeaderboardView({
   entries,
   period,
@@ -68,8 +139,72 @@ export default function LeaderboardView({
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Search query state
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+
+  // Page size state - default to showing all entries (preserve existing behavior)
+  const [pageSize, setPageSize] = useState<number>(() => {
+    const limit = searchParams.get('limit');
+    if (limit) {
+      const parsed = parseInt(limit, 10);
+      if ([10, 25, 50, 100].includes(parsed)) {
+        return parsed;
+      }
+    }
+    // Default: show all entries (preserve existing behavior)
+    return Infinity;
+  });
+
+  useEffect(() => {
+    const limit = searchParams.get('limit');
+    if (limit) {
+      const parsed = parseInt(limit, 10);
+      if ([10, 25, 50, 100].includes(parsed)) {
+        setPageSize(parsed);
+      } else {
+        setPageSize(Infinity);
+      }
+    } else {
+      setPageSize(Infinity);
+    }
+  }, [searchParams]);
+
+  // Current page state - default to page 1
+  const [currentPage, setCurrentPage] = useState<number>(() => {
+    const page = searchParams.get('page');
+    if (page) {
+      const parsed = parseInt(page, 10);
+      return parsed > 0 ? parsed : 1;
+    }
+    return 1;
+  });
+
+  useEffect(() => {
+    const page = searchParams.get('page');
+    if (page) {
+      const parsed = parseInt(page, 10);
+      setCurrentPage(parsed > 0 ? parsed : 1);
+    } else {
+      setCurrentPage(1);
+    }
+  }, [searchParams]);
+
+  // sorting
+  const [sortBy, setSortBy] = useState<SortBy>(() => {
+    const s = searchParams.get('sort');
+    if(s === 'pr_opened' || s === 'pr_merged' || s === 'issues')
+      return s as SortBy;
+    return 'points';
+  });
+
+  useEffect(() => {
+    const s = searchParams.get('sort');
+    setSortBy(s === 'pr_opened' || s === 'pr_merged' || s === 'issues' ? (s as SortBy) : 'points');
+  }, [searchParams]);
+
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const pathname = usePathname();
   
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   
@@ -84,7 +219,6 @@ export default function LeaderboardView({
     if (rolesParam) {
       return new Set(rolesParam.split(","));
     }
-    // Default: exclude hidden roles
     const allRoles = new Set<string>();
     entries.forEach((entry) => {
       if (entry.role && !hiddenRoles.includes(entry.role)) {
@@ -94,7 +228,6 @@ export default function LeaderboardView({
     return allRoles;
   }, [searchParams, entries, hiddenRoles]);
 
-  // Get unique roles from entries
   const availableRoles = useMemo(() => {
     const roles = new Set<string>();
     entries.forEach((entry) => {
@@ -105,29 +238,88 @@ export default function LeaderboardView({
     return Array.from(roles).sort();
   }, [entries]);
 
-  // Filter entries by selected roles and search query
   const filteredEntries = useMemo(() => {
     let filtered = entries;
 
-    // Filter by roles
     if (selectedRoles.size > 0) {
       filtered = filtered.filter(
         (entry) => entry.role && selectedRoles.has(entry.role)
       );
     }
 
-    // Filter by search query
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter((entry) => {
-        const name = (entry.name || entry.username).toLowerCase();
-        const username = entry.username.toLowerCase();
-        return name.includes(query) || username.includes(query);
-      });
+    if (debouncedSearchQuery.trim()) {
+  const query = debouncedSearchQuery.toLowerCase();
+  filtered = filtered.filter((entry) => {
+    const name = (entry.name || entry.username).toLowerCase();
+    const username = entry.username.toLowerCase();
+    return name.includes(query) || username.includes(query);
+  });
+}
+
+
+    // applying sorting
+    try{
+      filtered = sortEntries(filtered, sortBy);
+    } 
+    catch(e){
+      console.error('Error sorting entries:', e);
     }
 
     return filtered;
-  }, [entries, selectedRoles, searchQuery]);
+  }, [entries, selectedRoles, debouncedSearchQuery, sortBy]);
+
+  // Calculate total pages
+  const totalPages = useMemo(() => {
+    if (pageSize === Infinity) {
+      return 1; // Show all entries on one "page"
+    }
+    return Math.ceil(filteredEntries.length / pageSize);
+  }, [filteredEntries.length, pageSize]);
+
+  // Slice entries based on pageSize and currentPage
+  const paginatedEntries = useMemo(() => {
+    if (pageSize === Infinity) {
+      return filteredEntries;
+    }
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    return filteredEntries.slice(start, end);
+  }, [filteredEntries, pageSize, currentPage]);
+
+  // Reset to page 1 when pageSize changes or when filteredEntries change significantly
+useEffect(() => {
+  if (currentPage > totalPages && totalPages > 0) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("page");
+    setCurrentPage(1);
+
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
+    }
+  }
+}, [
+  debouncedSearchQuery,
+  pageSize,
+  totalPages,
+  currentPage,
+  searchParams,
+  pathname,
+]);
+
+
+
+  // Reset to page 1 when search query changes
+  useEffect(() => {
+    if (currentPage !== 1 && pageSize !== Infinity) {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("page");
+      setCurrentPage(1);
+      if(typeof window !== 'undefined') {
+        window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedSearchQuery]); // Only reset when search query changes
 
   const toggleRole = (role: string) => {
     const newSelected = new Set(selectedRoles);
@@ -136,14 +328,86 @@ export default function LeaderboardView({
     } else {
       newSelected.add(role);
     }
-    updateRolesParam(newSelected);
+    // Reset to page 1 when roles change
+    const params = new URLSearchParams(searchParams.toString());
+    if (newSelected.size > 0) {
+      params.set("roles", Array.from(newSelected).join(","));
+    } else {
+      params.delete("roles");
+    }
+    params.delete("page"); // Reset pagination
+    if(typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+    }
+    setCurrentPage(1);
   };
 
   const clearFilters = () => {
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
     const params = new URLSearchParams(searchParams.toString());
+    if(isMobile){
+      setSearchQuery("");
+      return;
+    }
     params.delete("roles");
-    router.push(`?${params.toString()}`, { scroll: false });
+    params.delete("sort");
+    params.delete("order");
+    // Reset to page 1 when clearing filters
+    params.delete("page");
+    setCurrentPage(1);
+    // Note: We preserve the limit param when clearing filters
+
+    window.history.replaceState(null, "", `${pathname}?${params.toString()}`);
     setSearchQuery("");
+    setSortBy("points");
+  };
+
+  const updatePageSize = (newPageSize: number | "all") => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (newPageSize === "all" || newPageSize === Infinity) {
+      params.delete("limit");
+      setPageSize(Infinity);
+    } else {
+      params.set("limit", newPageSize.toString());
+      setPageSize(newPageSize);
+    }
+    // Reset to page 1 when page size changes
+    params.delete("page");
+    setCurrentPage(1);
+    if(typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+    }
+  };
+
+  const updatePage = (page: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (page === 1) {
+      params.delete("page");
+    } else {
+      params.set("page", page.toString());
+    }
+    setCurrentPage(page);
+    if(typeof window !== 'undefined') {
+      window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      updatePage(currentPage + 1);
+    }
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      updatePage(currentPage - 1);
+    }
+  };
+
+  const goToPage = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      updatePage(page);
+    }
   };
 
   const updateRolesParam = (roles: Set<string>) => {
@@ -153,10 +417,9 @@ export default function LeaderboardView({
     } else {
       params.delete("roles");
     }
-    router.push(`?${params.toString()}`, { scroll: false });
+    if(typeof window !== 'undefined') window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
   };
 
-  // Filter top contributors by selected roles
   const filteredTopByActivity = useMemo(() => {
     if (selectedRoles.size === 0) {
       return topByActivity;
@@ -166,7 +429,6 @@ export default function LeaderboardView({
 
     for (const [activityName, contributors] of Object.entries(topByActivity)) {
       const filteredContributors = contributors.filter((contributor) => {
-        // Find the contributor in entries to get their role
         const entry = entries.find((e) => e.username === contributor.username);
         return entry?.role && selectedRoles.has(entry.role);
       });
@@ -207,6 +469,45 @@ export default function LeaderboardView({
                 </p>
               </div>
 
+              {/* Filters */}
+              <div
+                className="
+                  w-full
+                  md:w-auto md:ml-auto
+                  flex flex-col
+                  md:items-end
+                  lg:flex-row lg:items-center
+                  gap-2
+                "
+              >
+                <div className="flex items-center gap-2 w-full md:justify-end">
+                  <div className="relative w-full md:w-[16rem]">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      type="text"
+                      placeholder="Search contributors..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-9 h-9 w-full bg-white dark:bg-[#07170f] border border-[#50B78B]/60 dark:border-[#50B78B]/40 focus-visible:ring-2 focus-visible:ring-[#50B78B]"
+                    />
+                  </div>
+
+                  <div className="hidden sm:flex">
+                    <button
+                      type="button"
+                      className="h-9 w-28 px-3 rounded-md bg-[#50B78B] text-white text-sm flex items-center justify-center gap-2"
+                    >
+                      <span>
+                        {sortBy === "points"
+                          ? "Total Points"
+                          : sortBy === "pr_opened"
+                          ? "PR Opened"
+                          : sortBy === "pr_merged"
+                          ? "PR Merged"
+                          : "Issue Opened"}
+                      </span>
+                    </button>
+                  </div>
               <div className="flex flex-col gap-3 w-full sm:w-auto sm:flex-row sm:items-center sm:justify-end">
                 
               <div className="w-fit self-center sm:self-auto flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
@@ -254,91 +555,169 @@ export default function LeaderboardView({
                   />
                 </div>
 
-                {/* Role Filter */}
-                {availableRoles.length > 0 && (
-                  <>
-                    <div className="flex flex-row items-center gap-2 w-full sm:w-auto sm:flex-row sm:items-center sm:gap-2 justify-between sm:justify-start">
-                      {(selectedRoles.size > 0 || searchQuery) && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={clearFilters}
-                          className="h-9 shrink-0 hover:bg-[#42B883]/20 dark:hover:bg-[#42B883]/20 focus:border-[#42B883] focus-visible:ring-2 focus-visible:ring-[#42B883]/40 outline-none order-2 sm:order-1"
-                        >
-                          <X className="h-4 w-4 mr-1" />
-                          Clear
-                        </Button>
-                      )}
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-9 w-[min(11rem,calc(100%-6rem))] px-1 has-[>svg]:px-1 sm:w-auto sm:px-3 sm:has-[>svg]:px-2.5 border border-[#42B883]/30 dark:border-[#42B883]/30 hover:bg-[#42B883]/20 dark:hover:bg-[#42B883]/20 focus:border-[#42B883] focus-visible:ring-2 focus-visible:ring-[#42B883]/40 outline-none min-w-0 order-1 sm:order-2"
-                          >
-                            <Filter className="h-4 w-4 mr-1.5 sm:mr-2" />
-                            Role
-                            {selectedRoles.size > 0 && (
-                              <span className="ml-0.5 sm:ml-1 px-1.5 py-0.5 text-xs rounded-full bg-[#42B883] text-white">
-                                {selectedRoles.size}
-                              </span>
-                            )}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent
-                          className="w-64 max-w-[calc(100vw-2rem)] bg-white dark:bg-[#07170f]"
-                          align="end"
-                        >
-                          <div className="space-y-4">
-                            <h4 className="font-medium text-sm">
-                              Filter by Role
-                            </h4>
-                            <div className="space-y-2 max-h-64 overflow-y-auto">
-                              {availableRoles.map((role) => (
-                                <div
-                                  key={role}
-                                  className="flex items-center space-x-2"
-                                >
-                                  <Checkbox
-                                    id={role}
-                                    checked={selectedRoles.has(role)}
-                                    onCheckedChange={() => toggleRole(role)}
-                                  />
-                                  <label
-                                    htmlFor={role}
-                                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-                                  >
-                                    {role}
-                                  </label>
+                <div className="flex items-center gap-2 justify-end">
+                  {(selectedRoles.size > 0 || searchQuery || sortBy !== "points") && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={clearFilters}
+                      className="h-9 hover:bg-[#50B78B]/20 cursor-pointer"
+                    >
+                      <X className="h-4 w-4 mr-1" />
+                      Clear
+                    </Button>
+                  )}
+
+                  <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-9 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 cursor-pointer"
+                      >
+                        <Filter className="h-4 w-4 mr-1.5" />
+                        Filter
+                        {selectedRoles.size > 0 && (
+                          <span className="ml-1 px-1.5 py-0.5 text-xs rounded-full bg-[#50B78B] text-white">
+                            {selectedRoles.size}
+                          </span>
+                        )}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      align="end"
+                      className="w-56 bg-white dark:bg-[#07170f]"
+                    >
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-sm">
+                          Sort By
+                        </h4>
+                        <div className="space-y-0.5">
+                          {[
+                            { key: 'points' as SortBy, label: 'Total Points' },
+                            { key: 'pr_opened' as SortBy, label: 'PRs Opened' },
+                            { key: 'pr_merged' as SortBy, label: 'PRs Merged' },
+                            { key: 'issues' as SortBy, label: 'Issue Opened' },
+                          ].map((opt) => {
+                            const active = sortBy === opt.key;
+                            return (
+                              <button
+                                key={opt.key}
+                                onClick={(e) => {
+                                  setPopoverOpen(false);
+                                  setSortBy(opt.key as SortBy);
+                                  const params = new URLSearchParams(searchParams.toString());
+                                  if(opt.key === 'points'){
+                                    params.delete('sort');
+                                    params.delete('order');
+                                  }else{
+                                    params.set('sort', opt.key);
+                                    params.set('order', 'desc');
+                                  }
+                                  // Reset to page 1 when sort changes
+                                  params.delete('page');
+                                  setCurrentPage(1);
+                                  if(typeof window !== 'undefined') 
+                                    window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+                                }}
+                                className={cn('w-full text-left px-4 py-2 cursor-pointer rounded-md text-sm', active ? 'bg-[#50B78B] text-white' : 'hover:bg-muted')}
+                                aria-pressed={active}
+                              >
+                                <div className="flex items-center justify-between">
+                                  <div>{opt.label}</div>
                                 </div>
-                              ))}
+                              </button>
+                            )
+                          })}
+                        </div>
+                        <h4 className="font-medium text-sm">
+                          Role
+                        </h4>
+                        <div className="space-y-2 max-h-64 overflow-y-auto px-4">
+                          {availableRoles.map((role) => (
+                            <div
+                              key={role}
+                              className="flex items-center space-x-2"
+                            >
+                              <Checkbox
+                                id={role}
+                                checked={selectedRoles.has(role)}
+                                onCheckedChange={() => toggleRole(role)}
+                              />
+                              <label
+                                htmlFor={role}
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                              >
+                                {role}
+                              </label>
                             </div>
-                          </div>
-                        </PopoverContent>
-                      </Popover>
-                    </div>
-                  </>
-                )}
+                          ))}
+                        </div>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
               </div>
             </div>
           </div>
 
           {/* Period Selector */}
-          <div className="flex gap-2 mb-8 border-b">
-            {(["week", "month", "year"] as const).map((p) => (
-              <Link
-                key={p}
-                href={`/leaderboard/${p}`}
-                className={cn(
-                  "px-4 py-2 font-medium transition-colors border-b-2 relative outline-none focus-visible:ring-2 focus-visible:ring-[#42B883]/60 rounded-sm",
-                  period === p
-                    ? "border-[#42B883] text-[#42B883] bg-linear-to-t from-[#42B883]/12 to-transparent dark:from-[#42B883]/12"
-                    : "border-transparent text-muted-foreground hover:text-[#42B883]"
-                )}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 border-b">
+            <div className="flex gap-2">
+              {(["week", "month", "year"] as const).map((p) => {
+                // Preserve query parameters when switching periods, but reset page to 1
+                const params = new URLSearchParams(searchParams.toString());
+                params.delete("page"); // Reset pagination when switching periods
+                const href = `/leaderboard/${p}${params.toString() ? `?${params.toString()}` : ''}`;
+                return (
+                  <Link
+                    key={p}
+                    href={href}
+                    className={cn(
+                      "px-4 py-2 font-medium transition-colors border-b-2 relative outline-none focus-visible:ring-2 focus-visible:ring-[#50B78B]/60 rounded-sm",
+                      period === p
+                        ? "border-[#50B78B] text-[#50B78B] bg-linear-to-t from-[#50B78B]/12 to-transparent dark:from-[#50B78B]/12"
+                        : "border-transparent text-muted-foreground hover:text-[#50B78B]"
+                    )}
+                  >
+                    {periodLabels[p]}
+                  </Link>
+                );
+              })}
+            </div>
+            
+            {/* Entries per page selector */}
+            <div className="flex items-center gap-2">
+              <label htmlFor="page-size-select" className="text-sm text-muted-foreground whitespace-nowrap">
+                Show
+              </label>
+              <Select
+                value={pageSize === Infinity ? "all" : pageSize.toString()}
+                onValueChange={(value) => {
+                  if (value === "all") {
+                    updatePageSize("all");
+                  } else {
+                    updatePageSize(parseInt(value, 10));
+                  }
+                }}
               >
-                {periodLabels[p]}
-              </Link>
-            ))}
+                <SelectTrigger
+                  id="page-size-select"
+                  size="sm"
+                  className="h-9 w-24 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 focus-visible:ring-2 focus-visible:ring-[#50B78B]"
+                  aria-label="Select number of entries per page"
+                >
+                  <SelectValue placeholder="All" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="10">10</SelectItem>
+                  <SelectItem value="25">25</SelectItem>
+                  <SelectItem value="50">50</SelectItem>
+                  <SelectItem value="100">100</SelectItem>
+                  <SelectItem value="all">All</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
 
           {/* Leaderboard */}
@@ -367,19 +746,250 @@ export default function LeaderboardView({
                 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6" 
                 : "space-y-4"
             )}>
-              {filteredEntries.map((entry, index) => {
-                const rank = index + 1;
+              {paginatedEntries.map((entry, index) => {
+                // Calculate rank based on position in filtered list, accounting for pagination offset
+                const rank = pageSize === Infinity 
+                  ? index + 1 
+                  : (currentPage - 1) * pageSize + index + 1;
                 return (
                   <LeaderboardCard
                     key={entry.username}
-                    entry={entry}
-                    rank={rank}
-                    startDate={startDate}
-                    endDate={endDate}
-                    variant={viewMode}
-                  />
+                    className={cn(
+                      "transition-all hover:shadow-md",
+                      isTopThree && "border-[#50B78B]/50"
+                    )}
+                  >
+                    <CardContent>
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+
+                        {/* Rank */}
+                        <div className="flex items-center justify-center size-12 shrink-0">
+                          {getRankIcon(rank) || (
+                            <span className="text-2xl font-bold text-[#50B78B]">
+                              {rank}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Avatar - NOW CLICKABLE */}
+                        <a
+                          href={`https://github.com/${entry.username}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="shrink-0"
+                        >
+                          <Avatar className="size-14 hover:ring-2 hover:ring-[#50B78B] transition-all cursor-pointer">
+                            <AvatarImage
+                              src={entry.avatar_url || undefined}
+                              alt={entry.name || entry.username}
+                            />
+                            <AvatarFallback>
+                              {(entry.name || entry.username)
+                                .substring(0, 2)
+                                .toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                        </a>
+
+                        {/* Contributor Info */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
+                            <h3 className="text-lg font-semibold">
+                              {entry.name || entry.username}
+                            </h3>
+                            {entry.role && (
+                              <span className="text-xs px-2 py-1 rounded-full bg-[#50B78B]/10 text-[#50B78B]">
+                                {entry.role}
+                              </span>
+                            )}
+                          </div>
+
+                          <a
+                            href={`https://github.com/${entry.username}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-muted-foreground hover:text-[#50B78B] transition-colors"
+                          >
+                            @{entry.username}
+                          </a>
+
+                          <div className="mb-3" />
+
+                          {/* Activity Breakdown - Enhanced with visual distinction */}
+                          <div className="flex flex-wrap gap-2">
+                            {Object.entries(entry.activity_breakdown)
+                              .sort((a, b) => {
+                                const activityPriority: Record<string, number> = {
+                                  "PR merged": 1,
+                                  "PR opened": 2,
+                                  "Issue opened": 3,
+                                };
+                                const priorityA = activityPriority[a[0]] ?? 99;
+                                const priorityB = activityPriority[b[0]] ?? 99;
+                                if (priorityA !== priorityB) {
+                                  return priorityA - priorityB;
+                                }
+                                return a[0].localeCompare(b[0]);
+                              })
+                              .map(([activityName, data]) => {
+                                const style = getActivityStyle(activityName);
+                                const IconComponent = style.icon;
+                                
+                                return (
+                                  <div
+                                    key={activityName}
+                                    className={cn(
+                                      "relative text-xs px-3 py-1.5 rounded-md border-l-2 transition-all hover:shadow-sm",
+                                      style.bgColor,
+                                      style.borderColor
+                                    )}
+                                  >
+                                    <div className="flex items-center gap-1.5">
+                                      {IconComponent && (
+                                        <IconComponent className={cn("w-3.5 h-3.5", style.textColor)} />
+                                      )}
+                                      <span className={cn("font-semibold", style.textColor)}>
+                                        {activityName}:
+                                      </span>
+                                      <span className="text-muted-foreground font-medium">
+                                        {data.count}
+                                      </span>
+                                      {data.points > 0 && (
+                                        <span className={cn("ml-0.5 font-bold", style.textColor)}>
+                                          (+{data.points})
+                                        </span>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                          </div>
+                        </div>
+
+                        {/* Total Points with Trend Chart */}
+                        <div className="flex items-center gap-4 shrink-0">
+                          <div className="hidden sm:block">
+                          {entry.daily_activity &&
+                            entry.daily_activity.length > 0 && (
+                              <ActivityTrendChart
+                                dailyActivity={entry.daily_activity}
+                                startDate={startDate}
+                                endDate={endDate}
+                                mode="points"
+                              />
+                            )}
+                          </div>
+                          <div className="text-right">
+                            <div className="text-3xl font-bold text-[#50B78B]">
+                              {entry.total_points}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              points
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 );
               })}
+            </div>
+          )}
+
+          {/* Pagination Controls */}
+          {pageSize !== Infinity && totalPages > 1 && filteredEntries.length > 0 && (
+            <div className="flex items-center justify-center gap-2 mt-8">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={goToPreviousPage}
+                disabled={currentPage === 1}
+                className="h-9 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Go to previous page"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                <span className="sr-only">Previous</span>
+              </Button>
+
+              <div className="flex items-center gap-1">
+                {/* Calculate which page numbers to show */}
+                {(() => {
+                  const pages: number[] = [];
+                  
+                  if (totalPages <= 7) {
+                    // Show all pages if 7 or fewer
+                    for (let i = 1; i <= totalPages; i++) {
+                      pages.push(i);
+                    }
+                  } else {
+                    // Always show first page
+                    pages.push(1);
+                    
+                    if (currentPage <= 4) {
+                      // Show first 5 pages, then ellipsis, then last
+                      for (let i = 2; i <= 5; i++) {
+                        pages.push(i);
+                      }
+                      pages.push(-1); // -1 represents ellipsis
+                      pages.push(totalPages);
+                    } else if (currentPage >= totalPages - 3) {
+                      // Show first, ellipsis, then last 5 pages
+                      pages.push(-1); // -1 represents ellipsis
+                      for (let i = totalPages - 4; i <= totalPages; i++) {
+                        pages.push(i);
+                      }
+                    } else {
+                      // Show first, ellipsis, current-1, current, current+1, ellipsis, last
+                      pages.push(-1); // -1 represents ellipsis
+                      pages.push(currentPage - 1);
+                      pages.push(currentPage);
+                      pages.push(currentPage + 1);
+                      pages.push(-1); // -1 represents ellipsis
+                      pages.push(totalPages);
+                    }
+                  }
+
+                  return pages.map((pageNum, idx) => {
+                    if (pageNum === -1) {
+                      return (
+                        <span key={`ellipsis-${idx}`} className="px-2 text-muted-foreground">
+                          …
+                        </span>
+                      );
+                    }
+                    return (
+                      <Button
+                        key={pageNum}
+                        variant={currentPage === pageNum ? "default" : "ghost"}
+                        size="sm"
+                        onClick={() => goToPage(pageNum)}
+                        className={cn(
+                          "h-9 w-9 p-0",
+                          currentPage === pageNum
+                            ? "bg-[#50B78B] text-white hover:bg-[#50B78B]/90"
+                            : "hover:bg-[#50B78B]/20 hover:text-[#50B78B]"
+                        )}
+                        aria-label={`Go to page ${pageNum}`}
+                        aria-current={currentPage === pageNum ? "page" : undefined}
+                      >
+                        {pageNum}
+                      </Button>
+                    );
+                  });
+                })()}
+              </div>
+
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={goToNextPage}
+                disabled={currentPage === totalPages}
+                className="h-9 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Go to next page"
+              >
+                <ChevronRight className="h-4 w-4" />
+                <span className="sr-only">Next</span>
+              </Button>
             </div>
           )}
         </div>
@@ -394,60 +1004,67 @@ export default function LeaderboardView({
               </h2>
               <div className="space-y-4">
                 {Object.entries(filteredTopByActivity).map(
-                  ([activityName, contributors]) => (
-                    <Card key={activityName} className="overflow-hidden p-0 border-[#42B883]/20">
-                      <CardContent className="p-0">
-                        <div className="bg-[#42B883]/8 dark:bg-[#42B883]/12 px-4 py-2.5 border-b border-[#42B883]/20">
-                          <h3 className="font-semibold text-sm text-foreground">
-                            {activityName}
-                          </h3>
-                        </div>
-                        <div className="p-3 space-y-2">
-                          {contributors.map((contributor, index) => (
-                            <div
-                              key={contributor.username}
-                              className="flex items-center gap-2.5 p-2 rounded-md hover:bg-[#42B883]/5 transition-colors group cursor-pointer"
-                            >
-                              <div className="flex items-center justify-center w-5 h-5 shrink-0">
-                                {index === 0 && (
-                                  <Trophy className="h-4 w-4 text-yellow-500" />
-                                )}
-                                {index === 1 && (
-                                  <Medal className="h-4 w-4 text-gray-400" />
-                                )}
-                                {index === 2 && (
-                                  <Medal className="h-4 w-4 text-amber-600" />
-                                )}
-                              </div>
-                              <Avatar className="h-9 w-9 shrink-0 border border-[#42B883]/10">
-                                <AvatarImage
-                                  src={contributor.avatar_url || undefined}
-                                  alt={contributor.name || contributor.username}
-                                />
-                                <AvatarFallback className="text-xs bg-gradient-to-br from-[#42B883]/20 to-[#42B883]/10 text-[#42B883]">
-                                  {(contributor.name || contributor.username)
-                                    .substring(0, 2)
-                                    .toUpperCase()}
-                                </AvatarFallback>
-                              </Avatar>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium truncate group-hover:text-[#42B883] transition-colors leading-tight">
-                                  {contributor.name || contributor.username}
-                                </p>
-                                <p className="text-xs text-muted-foreground mt-0.5">
-                                  {contributor.count}{" "}
-                                  {contributor.count === 1
-                                    ? "activity"
-                                    : "activities"}{" "}
-                                  · <span className="font-semibold text-[#42B883]">{contributor.points} pts</span>
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  )
+                  ([activityName, contributors]) => {
+                    const style = getActivityStyle(activityName);
+                    
+                    return (
+                      <Card key={activityName} className="overflow-hidden p-0">
+                        <CardContent className="p-0">
+                          <div className={cn(
+                            "px-4 py-2.5 border-b border-l-4",
+                            style.bgColor,
+                            style.borderColor
+                          )}>
+                            <h3 className={cn("font-semibold text-sm", style.textColor)}>
+                              {activityName}
+                            </h3>
+                          </div>
+                          <div className="p-3 space-y-2">
+                            {contributors.map((contributor, index) => (
+                              <Link
+                                key={contributor.username}
+                                href={`/${contributor.username}`}
+                                className="flex items-center gap-2.5 p-2 rounded-md hover:bg-accent transition-colors group"
+                              >
+                                <div className="flex items-center justify-center w-5 h-5 shrink-0">
+                                  {index === 0 && (
+                                    <Trophy className="h-4 w-4 text-[#50B78B]" />
+                                  )}
+                                  {index === 1 && (
+                                    <Medal className="h-4 w-4 text-zinc-400" />
+                                  )}
+                                  {index === 2 && (
+                                    <Medal className="h-4 w-4 text-[#50B78B]/70" />
+                                  )}
+                                </div>
+                                <Avatar className="h-9 w-9 shrink-0 border">
+                                  <AvatarImage
+                                    src={contributor.avatar_url || undefined}
+                                    alt={contributor.name || contributor.username}
+                                  />
+                                  <AvatarFallback className="text-xs">
+                                    {(contributor.name || contributor.username)
+                                      .substring(0, 2)
+                                      .toUpperCase()}
+                                  </AvatarFallback>
+                                </Avatar>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium truncate group-hover:text-[#50B78B] transition-colors leading-tight">
+                                    {contributor.name || contributor.username}
+                                  </p>
+                                  <div className="flex items-center gap-2 mt-0.5 text-xs text-muted-foreground">
+                                    <span>{contributor.count} {contributor.count === 1 ? "activity" : "activities"}</span>
+                                    <span>·</span>
+                                    <span>{contributor.points} pts</span>
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  }
                 )}
               </div>
             </div>
@@ -456,4 +1073,4 @@ export default function LeaderboardView({
       </div>
     </div>
   );
-}  
+}

@@ -1,7 +1,9 @@
 import fs from "fs";
 import path from "path";
 
-/* ================= CONFIG ================= */
+/* -------------------------------------------------------
+   CONFIG
+------------------------------------------------------- */
 
 const ORG = "CircuitVerse";
 const GITHUB_API = "https://api.github.com";
@@ -11,36 +13,96 @@ if (!TOKEN) {
   throw new Error("❌ GITHUB_TOKEN is required");
 }
 
-/* ================= SCORING ================= */
+/* -------------------------------------------------------
+   SCORING
+------------------------------------------------------- */
 
 const POINTS = {
-  PR_OPENED: 2,
-  PR_MERGED: 5,
-  ISSUE_OPENED: 1,
+  "PR opened": 2,
+  "PR merged": 5,
+  "Issue opened": 1,
+} as const;
+
+/* -------------------------------------------------------
+   TYPES (EXPORTED — IMPORTANT)
+------------------------------------------------------- */
+
+export type RawActivity = {
+  type: "PR opened" | "PR merged" | "Issue opened";
+  occured_at: string;
+  title?: string | null;
+  link?: string | null;
+  points: number;
 };
 
-/* ================= TITLE SANITIZER ================= */
+export type DailyActivity = {
+  date: string;
+  count: number;
+  points: number;
+};
+
+export type Contributor = {
+  username: string;
+  name: string | null;
+  avatar_url: string | null;
+  role: string;
+  total_points: number;
+  activity_breakdown: Record<string, { count: number; points: number }>;
+  daily_activity: DailyActivity[];
+  raw_activities: RawActivity[];
+};
+
 /**
- * Prevents Tailwind / PostCSS crashes caused by
- * titles like: [Fix Commentator] : something
+ * 👇 REQUIRED BY lib/db.ts & FRONTEND
  */
-function sanitizeTitle(title?: string | null) {
-  if (!title) return null;
+export type UserEntry = {
+  username: string;
+  name: string | null;
+  avatar_url: string | null;
+  role: string;
+  total_points: number;
+  activity_breakdown: Record<string, { count: number; points: number }>;
+  daily_activity: DailyActivity[];
+  activities?: RawActivity[];
+};
 
-  return title
-    .replace(/\[|\]/g, "") // remove brackets
-    .replace(/:/g, " - ") // replace colon
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-/* ================= UTILS ================= */
+/* -------------------------------------------------------
+   UTILS
+------------------------------------------------------- */
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-// GitHub Search API: 30 req/min limit → throttle
+function iso(d: Date) {
+  return d.toISOString().split("T")[0];
+}
+
+function daysAgo(n: number) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d;
+}
+
+function sanitizeTitle(title?: string | null) {
+  if (!title) return null;
+  return title
+    .replace(/\[|\]/g, "")
+    .replace(/:/g, " - ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isBotUser(user: any): boolean {
+  if (!user?.login) return true;
+  if (user.type && user.type !== "User") return true;
+  return user.login.endsWith("[bot]");
+}
+
+/* -------------------------------------------------------
+   GITHUB SEARCH (RATE + 1000 CAP SAFE)
+------------------------------------------------------- */
+
 async function ghSearch(url: string) {
   const res = await fetch(url, {
     headers: {
@@ -54,101 +116,11 @@ async function ghSearch(url: string) {
     throw new Error(`GitHub API ${res.status}: ${text}`);
   }
 
-  // ⛔ mandatory throttle
+  // ⛔ Mandatory throttle (30 req/min)
   await sleep(2500);
 
   return res.json();
 }
-
-function iso(d: Date) {
-  return d.toISOString().split("T")[0];
-}
-
-function daysAgo(n: number) {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return d;
-}
-
-/* ================= FILTERS ================= */
-
-function isBotUser(user: any): boolean {
-  if (!user?.login) return true;
-  if (user.type && user.type !== "User") return true;
-  return user.login.endsWith("[bot]");
-}
-
-/* ================= TYPES ================= */
-
-export type UserEntry = {
-  username: string;
-  name: string | null;
-  avatar_url: string | null;
-  role: string | null;
-  total_points: number;
-  activity_breakdown: Record<string, { count: number; points: number }>;
-  daily_activity: { date: string; count: number; points: number }[];
-  raw_activities: {
-    type: "PR opened" | "PR merged" | "Issue opened";
-    occured_at: string;
-    title?: string | null;
-    link?: string | null;
-    points: number;
-  }[];
-};
-
-/* ================= HELPERS ================= */
-
-function ensureUser(map: Map<string, UserEntry>, user: any) {
-  if (!map.has(user.login)) {
-    map.set(user.login, {
-      username: user.login,
-      name: user.name ?? null,
-      avatar_url: user.avatar_url ?? null,
-      role: "Contributor",
-      total_points: 0,
-      activity_breakdown: {},
-      daily_activity: [],
-      raw_activities: [],
-    });
-  }
-  return map.get(user.login)!;
-}
-
-function addActivity(
-  entry: UserEntry,
-  type: "PR opened" | "PR merged" | "Issue opened",
-  date: string,
-  points: number,
-  meta?: { title?: string; link?: string }
-) {
-  const day = date.split("T")[0]!;
-
-  entry.total_points += points;
-
-  entry.activity_breakdown[type] ??= { count: 0, points: 0 };
-  entry.activity_breakdown[type].count += 1;
-  entry.activity_breakdown[type].points += points;
-
-  const existing = entry.daily_activity.find((d) => d.date === day);
-  if (existing) {
-    existing.count += 1;
-    existing.points += points;
-  } else {
-    entry.daily_activity.push({ date: day, count: 1, points });
-  }
-
-  // ✅ RAW EVENT (safe title)
-  entry.raw_activities.push({
-    type,
-    occured_at: date,
-    title: sanitizeTitle(meta?.title),
-    link: meta?.link ?? null,
-    points,
-  });
-}
-
-/* ================= SEARCH (1000 CAP SAFE) ================= */
 
 async function searchByDateChunks(
   baseQuery: string,
@@ -186,12 +158,71 @@ async function searchByDateChunks(
   return all;
 }
 
-/* ================= YEAR GENERATOR ================= */
+/* -------------------------------------------------------
+   CORE HELPERS
+------------------------------------------------------- */
+
+function ensureUser(
+  map: Map<string, Contributor>,
+  user: any
+): Contributor {
+  if (!map.has(user.login)) {
+    map.set(user.login, {
+      username: user.login,
+      name: user.name ?? null,
+      avatar_url: user.avatar_url ?? null,
+      role: "Contributor",
+      total_points: 0,
+      activity_breakdown: {},
+      daily_activity: [],
+      raw_activities: [],
+    });
+  }
+  return map.get(user.login)!;
+}
+
+function addActivity(
+  entry: Contributor,
+  type: RawActivity["type"],
+  date: string,
+  points: number,
+  meta?: { title?: string; link?: string }
+) {
+  const day = date.split("T")[0]!;
+
+  entry.total_points += points;
+
+  entry.activity_breakdown[type] ??= { count: 0, points: 0 };
+  entry.activity_breakdown[type].count += 1;
+  entry.activity_breakdown[type].points += points;
+
+  const existing = entry.daily_activity.find((d) => d.date === day);
+  if (existing) {
+    existing.count += 1;
+    existing.points += points;
+  } else {
+    entry.daily_activity.push({ date: day, count: 1, points });
+  }
+
+  entry.raw_activities.push({
+    type,
+    occured_at: date,
+    title: sanitizeTitle(meta?.title),
+    link: meta?.link ?? null,
+    points,
+  });
+}
+
+/* -------------------------------------------------------
+   GENERATE YEAR
+------------------------------------------------------- */
 
 async function generateYear() {
+  console.log("🚀 Generating leaderboard");
+
   const since = daysAgo(365);
   const now = new Date();
-  const users = new Map<string, UserEntry>();
+  const users = new Map<string, Contributor>();
 
   console.log("🔍 PRs opened");
   for (const pr of await searchByDateChunks(`org:${ORG}+is:pr`, since, now)) {
@@ -200,7 +231,7 @@ async function generateYear() {
       ensureUser(users, pr.user),
       "PR opened",
       pr.created_at,
-      POINTS.PR_OPENED,
+      POINTS["PR opened"],
       { title: pr.title, link: pr.html_url }
     );
   }
@@ -216,7 +247,7 @@ async function generateYear() {
       ensureUser(users, pr.user),
       "PR merged",
       pr.closed_at,
-      POINTS.PR_MERGED,
+      POINTS["PR merged"],
       { title: pr.title, link: pr.html_url }
     );
   }
@@ -232,7 +263,7 @@ async function generateYear() {
       ensureUser(users, issue.user),
       "Issue opened",
       issue.created_at,
-      POINTS.ISSUE_OPENED,
+      POINTS["Issue opened"],
       { title: issue.title, link: issue.html_url }
     );
   }
@@ -259,49 +290,43 @@ async function generateYear() {
     JSON.stringify(yearData, null, 2)
   );
 
-  console.log(`✅ Generated year.json (${entries.length} contributors)`);
+  console.log(`✅ Generated year.json (${entries.length})`);
 
   derivePeriod(yearData, 7, "week");
-  derivePeriod(yearData, 14, "2week");
-  derivePeriod(yearData, 21, "3week");
   derivePeriod(yearData, 30, "month");
-  derivePeriod(yearData, 60, "2month");
-
-  generateRecentActivities(yearData, 14);
+  generateRecentActivities(yearData);
 }
 
-/* ================= DERIVED PERIODS ================= */
+/* -------------------------------------------------------
+   DERIVED PERIODS
+------------------------------------------------------- */
 
 function derivePeriod(source: any, days: number, period: string) {
   const cutoff = daysAgo(days);
 
   const entries = source.entries
-    .map((entry: UserEntry) => {
-      // only activities in range
+    .map((entry: Contributor) => {
       const acts = entry.raw_activities.filter(
         (a) => new Date(a.occured_at) >= cutoff
       );
-
       if (acts.length === 0) return null;
 
-      // rebuild breakdown
       const breakdown: Record<string, { count: number; points: number }> = {};
-      const daily: Record<
-        string,
-        { date: string; count: number; points: number }
-      > = {};
+      const daily: Record<string, DailyActivity> = {};
       let total = 0;
 
-      for (const a of acts) {
+       for (const a of acts) {
         const day = a.occured_at.split("T")[0]!;
 
         total += a.points;
 
-        const type = a.type;
+        breakdown[a.type] ??= { count: 0, points: 0 };
 
-        breakdown[type] ??= { count: 0, points: 0 };
-        breakdown[type].count += 1;
-        breakdown[type].points += a.points;
+        const bucket =
+          breakdown[a.type] ?? (breakdown[a.type] = { count: 0, points: 0 });
+
+        bucket.count += 1;
+        bucket.points += a.points;
 
         daily[day] ??= { date: day, count: 0, points: 0 };
         daily[day].count += 1;
@@ -316,16 +341,7 @@ function derivePeriod(source: any, days: number, period: string) {
         total_points: total,
         activity_breakdown: breakdown,
         daily_activity: Object.values(daily),
-        activities: acts.map((a) => ({
-          type: a.type,
-          title: a.title,
-          occured_at: a.occured_at,
-          link: a.link,
-          points: a.points,
-          contributor: entry.username,
-          contributor_name: entry.name,
-          contributor_avatar_url: entry.avatar_url,
-        })),
+        activities: acts,
       };
     })
     .filter(Boolean)
@@ -351,7 +367,9 @@ function derivePeriod(source: any, days: number, period: string) {
   console.log(`✅ Generated ${period}.json`);
 }
 
-/* ================= RECENT ACTIVITIES ================= */
+/* -------------------------------------------------------
+   RECENT ACTIVITIES
+------------------------------------------------------- */
 
 function generateRecentActivities(source: any, days = 14) {
   const cutoff = daysAgo(days);
@@ -374,19 +392,21 @@ function generateRecentActivities(source: any, days = 14) {
     }
   }
 
-  const out = [...groups.entries()]
-    .sort((a, b) => b[0].localeCompare(a[0]))
-    .map(([date, items]) => ({ date, items }));
-
   fs.writeFileSync(
     path.join(process.cwd(), "public", "leaderboard", "recent-activities.json"),
-    JSON.stringify({ updatedAt: Date.now(), groups: out }, null, 2)
+    JSON.stringify(
+      { updatedAt: Date.now(), groups: [...groups.entries()] },
+      null,
+      2
+    )
   );
 
   console.log("✅ Generated recent-activities.json");
 }
 
-/* ================= RUN ================= */
+/* -------------------------------------------------------
+   RUN
+------------------------------------------------------- */
 
 generateYear().catch((e) => {
   console.error("❌ Leaderboard generation failed");
