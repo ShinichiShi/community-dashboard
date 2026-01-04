@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/popover";
 import Link from "next/link";
 import {
-  Search,
   ChevronLeft,
   ChevronRight,
   Filter,
@@ -20,6 +19,7 @@ import {
   GitMerge,
   GitPullRequest,
   AlertCircle,
+  Search, Grid3X3, List
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useEffect } from "react";
@@ -27,6 +27,7 @@ import { sortEntries, type SortBy } from "@/lib/leaderboard";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import ActivityTrendChart from "../../components/Leaderboard/ActivityTrendChart";
 import { Input } from "@/components/ui/input";
+import { LeaderboardCard } from "./LeaderboardCard";
 import {
   Select,
   SelectContent,
@@ -204,6 +205,12 @@ export default function LeaderboardView({
 
   const [popoverOpen, setPopoverOpen] = useState(false);
   const pathname = usePathname();
+  
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  
+  const handleViewModeChange = (mode: "grid" | "list") => {
+    setViewMode(mode);
+  };
 
   // Get selected roles from query params
   // If no roles are selected, default to all visible roles (excluding hidden ones)
@@ -434,22 +441,6 @@ useEffect(() => {
     return filtered;
   }, [topByActivity, selectedRoles, entries]);
 
-  const getRankIcon = (rank: number) => {
-    if (rank === 1)
-      return (
-        <Trophy className="h-6 w-6 text-[#FFD700]" aria-label="1st place" />
-      );
-    if (rank === 2)
-      return (
-        <Medal className="h-6 w-6 text-[#C0C0C0]" aria-label="2nd place" />
-      );
-    if (rank === 3)
-      return (
-        <Medal className="h-6 w-6 text-[#CD7F32]/70" aria-label="3rd place" />
-      );
-    return null;
-  };
-
   const periodLabels = {
     week: "Weekly",
     month: "Monthly",
@@ -495,6 +486,35 @@ useEffect(() => {
                       onChange={(e) => setSearchQuery(e.target.value)}
                       className="pl-9 h-9 w-full bg-white dark:bg-[#07170f] border border-[#50B78B]/60 dark:border-[#50B78B]/40 focus-visible:ring-2 focus-visible:ring-[#50B78B]"
                     />
+                  </div>
+
+                  <div className="w-fit self-center sm:self-auto flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
+                    <Button
+                      variant={viewMode === "grid" ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => handleViewModeChange("grid")}
+                      className={cn(
+                        "h-8 px-3",
+                        viewMode === "grid" 
+                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
+                      )}
+                    >
+                      <Grid3X3 className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant={viewMode === "list" ? "default" : "ghost"}
+                      size="sm"
+                      onClick={() => handleViewModeChange("list")}
+                      className={cn(
+                        "h-8 px-3",
+                        viewMode === "list" 
+                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
+                      )}
+                    >
+                      <List className="h-4 w-4" />
+                    </Button>
                   </div>
 
                   <div className="hidden sm:flex">
@@ -690,154 +710,26 @@ useEffect(() => {
               </CardContent>
             </Card>
           ) : (
-            <div className="space-y-4">
+            <div className={cn(
+              "transition-all duration-300 ease-in-out",
+              viewMode === "grid" 
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6" 
+                : "space-y-4"
+            )}>
               {paginatedEntries.map((entry, index) => {
                 // Calculate rank based on position in filtered list, accounting for pagination offset
                 const rank = pageSize === Infinity 
                   ? index + 1 
                   : (currentPage - 1) * pageSize + index + 1;
-                const isTopThree = rank <= 3;
-
                 return (
-                  <Card
+                  <LeaderboardCard
                     key={entry.username}
-                    className={cn(
-                      "transition-all hover:shadow-md",
-                      isTopThree && "border-[#50B78B]/50"
-                    )}
-                  >
-                    <CardContent>
-                      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
-
-                        {/* Rank */}
-                        <div className="flex items-center justify-center size-12 shrink-0">
-                          {getRankIcon(rank) || (
-                            <span className="text-2xl font-bold text-[#50B78B]">
-                              {rank}
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Avatar - NOW CLICKABLE */}
-                        <a
-                          href={`https://github.com/${entry.username}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="shrink-0"
-                        >
-                          <Avatar className="size-14 hover:ring-2 hover:ring-[#50B78B] transition-all cursor-pointer">
-                            <AvatarImage
-                              src={entry.avatar_url || undefined}
-                              alt={entry.name || entry.username}
-                            />
-                            <AvatarFallback>
-                              {(entry.name || entry.username)
-                                .substring(0, 2)
-                                .toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                        </a>
-
-                        {/* Contributor Info */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap mb-1">
-                            <h3 className="text-lg font-semibold">
-                              {entry.name || entry.username}
-                            </h3>
-                            {entry.role && (
-                              <span className="text-xs px-2 py-1 rounded-full bg-[#50B78B]/10 text-[#50B78B]">
-                                {entry.role}
-                              </span>
-                            )}
-                          </div>
-
-                          <a
-                            href={`https://github.com/${entry.username}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-muted-foreground hover:text-[#50B78B] transition-colors"
-                          >
-                            @{entry.username}
-                          </a>
-
-                          <div className="mb-3" />
-
-                          {/* Activity Breakdown - Enhanced with visual distinction */}
-                          <div className="flex flex-wrap gap-2">
-                            {Object.entries(entry.activity_breakdown)
-                              .sort((a, b) => {
-                                const activityPriority: Record<string, number> = {
-                                  "PR merged": 1,
-                                  "PR opened": 2,
-                                  "Issue opened": 3,
-                                };
-                                const priorityA = activityPriority[a[0]] ?? 99;
-                                const priorityB = activityPriority[b[0]] ?? 99;
-                                if (priorityA !== priorityB) {
-                                  return priorityA - priorityB;
-                                }
-                                return a[0].localeCompare(b[0]);
-                              })
-                              .map(([activityName, data]) => {
-                                const style = getActivityStyle(activityName);
-                                const IconComponent = style.icon;
-                                
-                                return (
-                                  <div
-                                    key={activityName}
-                                    className={cn(
-                                      "relative text-xs px-3 py-1.5 rounded-md border-l-2 transition-all hover:shadow-sm",
-                                      style.bgColor,
-                                      style.borderColor
-                                    )}
-                                  >
-                                    <div className="flex items-center gap-1.5">
-                                      {IconComponent && (
-                                        <IconComponent className={cn("w-3.5 h-3.5", style.textColor)} />
-                                      )}
-                                      <span className={cn("font-semibold", style.textColor)}>
-                                        {activityName}:
-                                      </span>
-                                      <span className="text-muted-foreground font-medium">
-                                        {data.count}
-                                      </span>
-                                      {data.points > 0 && (
-                                        <span className={cn("ml-0.5 font-bold", style.textColor)}>
-                                          (+{data.points})
-                                        </span>
-                                      )}
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                          </div>
-                        </div>
-
-                        {/* Total Points with Trend Chart */}
-                        <div className="flex items-center gap-4 shrink-0">
-                          <div className="hidden sm:block">
-                          {entry.daily_activity &&
-                            entry.daily_activity.length > 0 && (
-                              <ActivityTrendChart
-                                dailyActivity={entry.daily_activity}
-                                startDate={startDate}
-                                endDate={endDate}
-                                mode="points"
-                              />
-                            )}
-                          </div>
-                          <div className="text-right">
-                            <div className="text-3xl font-bold text-[#50B78B]">
-                              {entry.total_points}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              points
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    entry={entry}
+                    rank={rank}
+                    startDate={startDate}
+                    endDate={endDate}
+                    variant={viewMode === "grid" ? "grid" : "list"}
+                  />
                 );
               })}
             </div>
