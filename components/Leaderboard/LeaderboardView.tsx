@@ -19,7 +19,9 @@ import {
   GitMerge,
   GitPullRequest,
   AlertCircle,
-  Search, Grid3X3, List
+  Search, Grid3X3, List,
+  SearchX,
+  Eye
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMemo, useState, useEffect } from "react";
@@ -481,97 +483,100 @@ export default function LeaderboardView({
                   gap-2
                 "
               >
-                <div className="flex items-center gap-2 w-full md:justify-end">
-                  <div className="relative w-full md:w-[16rem]">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      type="text"
-                      placeholder="Search contributors..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-9 h-9 w-full bg-white dark:bg-[#07170f] border border-[#50B78B]/60 dark:border-[#50B78B]/40 focus-visible:ring-2 focus-visible:ring-[#50B78B]"
-                    />
-                  </div>
-
-                  <div className="w-fit self-center sm:self-auto flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
-                   <Button
-                      variant={viewMode === "list" ? "default" : "ghost"}
-                      size="sm"
-                      onClick={() => handleViewModeChange("list")}
-                      className={cn(
-                        "h-8 px-3",
-                        viewMode === "list" 
-                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
-                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
-                      )}
-                    >
-                      <List className="h-4 w-4" />
-                    </Button>
-                    <Button
-                      variant={viewMode === "grid" ? "default" : "ghost"}
-                      size="sm"
-                      onClick={() => handleViewModeChange("grid")}
-                      className={cn(
-                        "h-8 px-3",
-                        viewMode === "grid" 
-                          ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
-                          : "hover:bg-[#50B78B]/10 text-muted-foreground"
-                      )}
-                    >
-                      <Grid3X3 className="h-4 w-4" />
-                    </Button>
-                  </div>
-
-                  <div className="flex">
-                    <button
-                      type="button"
-                      className="h-9 w-28 px-3 rounded-md bg-[#50B78B] text-white text-sm flex items-center justify-center gap-2"
-                    >
-                      <span>
-                        {sortBy === "points"
-                          ? "Total Points"
-                          : sortBy === "pr_opened"
-                            ? "PR Opened"
-                            : sortBy === "pr_merged"
-                              ? "PR Merged"
-                              : sortBy === "reviews"
-                                ? "Review Submitted"
-                                : "Issue Opened"}
-                      </span>
-                    </button>
-                  </div>
+                {/* Search bar - full width on mobile */}
+                <div className="relative w-full md:w-[16rem]">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    type="text"
+                    placeholder="Search contributors..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="pl-9 h-9 w-full bg-white dark:bg-[#07170f] border border-[#50B78B]/60 dark:border-[#50B78B]/40 focus-visible:ring-2 focus-visible:ring-[#50B78B]"
+                  />
                 </div>
 
-                <div className="flex items-center gap-2 justify-end">
-                  {(selectedRoles.size > 0 || searchQuery || sortBy !== "points") && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={clearFilters}
-                      className="h-9 hover:bg-[#50B78B]/20 cursor-pointer"
-                    >
-                      <X className="h-4 w-4 mr-1" />
-                      Clear
-                    </Button>
-                  )}
-
-                  <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
-                    <PopoverTrigger asChild>
-                      <Button
-                        variant="outline"
+                {/* Controls row - grid/list on left, filter on right */}
+                <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-fit flex items-center justify-center gap-1 p-1 bg-muted rounded-lg">
+                     <Button
+                        variant={viewMode === "list" ? "default" : "ghost"}
                         size="sm"
-                        className="h-9 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 cursor-pointer"
-                      >
-                        <Filter className="h-4 w-4 mr-1.5" />
-                        Filter
-                        {selectedRoles.size > 0 && (
-                          <span className="ml-1 px-1.5 py-0.5 text-xs rounded-full bg-[#50B78B] text-white">
-                            {selectedRoles.size}
-                          </span>
+                        onClick={() => handleViewModeChange("list")}
+                        className={cn(
+                          "h-8 px-3",
+                          viewMode === "list" 
+                            ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                            : "hover:bg-[#50B78B]/10 text-muted-foreground"
                         )}
+                      >
+                        <List className="h-4 w-4" />
                       </Button>
-                    </PopoverTrigger>
-                    <PopoverContent
+                      <Button
+                        variant={viewMode === "grid" ? "default" : "ghost"}
+                        size="sm"
+                        onClick={() => handleViewModeChange("grid")}
+                        className={cn(
+                          "h-8 px-3",
+                          viewMode === "grid" 
+                            ? "bg-[#50B78B] hover:bg-[#50B78B]/90 text-white" 
+                            : "hover:bg-[#50B78B]/10 text-muted-foreground"
+                        )}
+                      >
+                        <Grid3X3 className="h-4 w-4" />
+                      </Button>
+                    </div>
+
+                    <div className="hidden md:flex">
+                      <button
+                        type="button"
+                        className="h-9 w-28 px-3 rounded-md bg-[#50B78B] text-white text-sm flex items-center justify-center gap-2"
+                      >
+                        <span>
+                          {sortBy === "points"
+                            ? "Total Points"
+                            : sortBy === "pr_opened"
+                              ? "PR Opened"
+                              : sortBy === "pr_merged"
+                                ? "PR Merged"
+                                : sortBy === "reviews"
+                                  ? "Review Submitted"
+                                  : "Issue Opened"}
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {(selectedRoles.size > 0 || searchQuery || sortBy !== "points") && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={clearFilters}
+                        className="h-9 hover:bg-[#50B78B]/20 cursor-pointer"
+                      >
+                        <X className="h-4 w-4 mr-1" />
+                        Clear
+                      </Button>
+                    )}
+
+                    <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="h-9 border border-[#50B78B]/30 hover:bg-[#50B78B]/20 cursor-pointer"
+                        >
+                          <Filter className="h-4 w-4 mr-1.5" />
+                          Filter
+                          {selectedRoles.size > 0 && (
+                            <span className="ml-1 px-1.5 py-0.5 text-xs rounded-full bg-[#50B78B] text-white">
+                              {selectedRoles.size}
+                            </span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent
                       align="end"
                       className="w-64 bg-white dark:bg-[#07170f] border-[#50B78B]/20"
                     >
@@ -668,6 +673,7 @@ export default function LeaderboardView({
                       </div>
                     </PopoverContent>
                   </Popover>
+                  </div>
                 </div>
               </div>
             </div>
@@ -737,7 +743,7 @@ export default function LeaderboardView({
                 <div className="relative mx-auto w-20 h-20 mb-6">
                   <div className="absolute inset-0 rounded-full bg-[#50B78B]/10 dark:bg-[#50B78B]/15" />
                   <div className="absolute inset-2 rounded-full bg-[#50B78B]/5 dark:bg-[#50B78B]/10 flex items-center justify-center">
-                    <Search className="h-8 w-8 text-[#50B78B]/70" />
+                    <SearchX className="h-8 w-8 text-[#50B78B]/70" />
                   </div>
                 </div>
                 <h3 className="text-lg font-semibold mb-2">No results found</h3>

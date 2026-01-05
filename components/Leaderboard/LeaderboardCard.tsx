@@ -3,7 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, GitMerge, GitPullRequest, AlertCircle } from "lucide-react";
+import { Trophy, GitMerge, GitPullRequest, AlertCircle, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
 import ActivityTrendChart from "./ActivityTrendChart";
 import "./LeaderboardCard.css";
@@ -31,6 +31,12 @@ const activityStyles: Record<string, {
     bgColor: "bg-orange-500/10 dark:bg-orange-500/15",
     textColor: "text-orange-700 dark:text-orange-400",
     borderColor: "border-l-orange-500"
+  },
+  "Review submitted": {
+    icon: Eye,
+    bgColor: "bg-green-500/10 dark:bg-green-500/15",
+    textColor: "text-green-700 dark:text-green-400",
+    borderColor: "border-l-green-500"
   }
 };
 
@@ -136,8 +142,8 @@ export function LeaderboardCard({
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 dark:via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
           
           <CardContent className="p-4 sm:p-6 relative z-10">
-            <div className="flex gap-3 sm:hidden">
-              <div className="flex items-start justify-center w-[5%] pt-1">
+            <div className="flex items-center gap-3 sm:hidden">
+              <div className="flex items-center justify-center w-[5%]">
                 {getRankIcon(rank) || (
                   <span className="text-lg font-bold text-[#50B78B]">
                     {rank}
@@ -204,6 +210,7 @@ export function LeaderboardCard({
                         "PR merged": 1,
                         "PR opened": 2,
                         "Issue opened": 3,
+                        "Review submitted": 4,
                       };
                       const priorityA = activityPriority[a[0]] ?? 99;
                       const priorityB = activityPriority[b[0]] ?? 99;
@@ -212,7 +219,7 @@ export function LeaderboardCard({
                       }
                       return a[0].localeCompare(b[0]);
                     })
-                    .slice(0, 3) 
+                    .filter(([activityName, data]) => data.count > 0)
                     .map(([activityName, data]) => {
                       const style = getActivityStyle(activityName);
                       const IconComponent = style.icon;
@@ -231,7 +238,7 @@ export function LeaderboardCard({
                               <IconComponent className={cn("w-3 h-3", style.textColor)} />
                             )}
                             <span className={cn("font-medium truncate text-xs", style.textColor)}>
-                              {activityName === "PR merged" ? "PR" : activityName === "PR opened" ? "Opened" : "Issues"}:
+                              {activityName === "PR merged" ? "PR" : activityName === "PR opened" ? "Opened" : activityName === "Issue opened" ? "Issues" : activityName === "Review submitted" ? "Reviews" : activityName}:
                             </span>
                           </div>
                           <div className="flex items-center gap-1">
@@ -305,6 +312,7 @@ export function LeaderboardCard({
                         "PR merged": 1,
                         "PR opened": 2,
                         "Issue opened": 3,
+                        "Review submitted": 4,
                       };
                       const priorityA = activityPriority[a[0]] ?? 99;
                       const priorityB = activityPriority[b[0]] ?? 99;
@@ -313,7 +321,7 @@ export function LeaderboardCard({
                       }
                       return a[0].localeCompare(b[0]);
                     })
-                    .slice(0, 3) // Only show top 3 activities
+                    .filter(([activityName, data]) => data.count > 0)
                     .map(([activityName, data]) => {
                       const style = getActivityStyle(activityName);
                       const IconComponent = style.icon;
@@ -459,6 +467,7 @@ export function LeaderboardCard({
                     "PR merged": 1,
                     "PR opened": 2,
                     "Issue opened": 3,
+                    "Review submitted": 4,
                   };
                   const priorityA = activityPriority[a[0]] ?? 99;
                   const priorityB = activityPriority[b[0]] ?? 99;
@@ -467,7 +476,7 @@ export function LeaderboardCard({
                   }
                   return a[0].localeCompare(b[0]);
                 })
-                .slice(0, 3) // Only show top 3 activities
+                .filter(([activityName, data]) => data.count > 0)
                 .map(([activityName, data]) => {
                   const style = getActivityStyle(activityName);
                   const IconComponent = style.icon;
@@ -486,7 +495,7 @@ export function LeaderboardCard({
                           <IconComponent className={cn("w-3 h-3", style.textColor)} />
                         )}
                         <span className={cn("font-medium truncate text-xs", style.textColor)}>
-                          {activityName === "PR merged" ? "PR" : activityName === "PR opened" ? "Opened" : "Issues"}:
+                          {activityName === "PR merged" ? "PR" : activityName === "PR opened" ? "Opened" : activityName === "Issue opened" ? "Issues" : activityName === "Review submitted" ? "Reviews" : activityName}:
                         </span>
                       </div>
                       <div className="flex items-center gap-1">
@@ -575,7 +584,7 @@ export function LeaderboardCard({
                   }
                   return a[0].localeCompare(b[0]);
                 })
-                .slice(0, 3)
+                .filter(([activityName, data]) => data.count > 0)
                 .map(([activityName, data]) => {
                   const style = getActivityStyle(activityName);
                   const IconComponent = style.icon;
