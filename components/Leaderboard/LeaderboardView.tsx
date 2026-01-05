@@ -77,6 +77,12 @@ const activityStyles: Record<string, {
     bgColor: "bg-orange-500/10 dark:bg-orange-500/15",
     textColor: "text-orange-700 dark:text-orange-400",
     borderColor: "border-l-orange-500"
+  },
+  "Review submitted": {
+    icon: Eye,
+    bgColor: "bg-green-500/10 dark:bg-green-500/15",
+    textColor: "text-green-700 dark:text-green-400",
+    borderColor: "border-l-green-500"
   }
 };
 
@@ -169,14 +175,14 @@ export default function LeaderboardView({
   // sorting
   const [sortBy, setSortBy] = useState<SortBy>(() => {
     const s = searchParams.get('sort');
-    if(s === 'pr_opened' || s === 'pr_merged' || s === 'issues')
+    if (s === 'pr_opened' || s === 'pr_merged' || s === 'issues' || s === 'reviews')
       return s as SortBy;
     return 'points';
   });
 
   useEffect(() => {
     const s = searchParams.get('sort');
-    setSortBy(s === 'pr_opened' || s === 'pr_merged' || s === 'issues' ? (s as SortBy) : 'points');
+    setSortBy(s === 'pr_opened' || s === 'pr_merged' || s === 'issues' || s === 'reviews' ? (s as SortBy) : 'points');
   }, [searchParams]);
 
   const [popoverOpen, setPopoverOpen] = useState(false);
@@ -256,10 +262,10 @@ export default function LeaderboardView({
 
 
     // applying sorting
-    try{
+    try {
       filtered = sortEntries(filtered, sortBy);
-    } 
-    catch(e){
+    }
+    catch (e) {
       console.error('Error sorting entries:', e);
     }
 
@@ -312,7 +318,7 @@ export default function LeaderboardView({
       const params = new URLSearchParams(searchParams.toString());
       params.delete("page");
       setCurrentPage(1);
-      if(typeof window !== 'undefined') {
+      if (typeof window !== 'undefined') {
         window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
       }
     }
@@ -334,7 +340,7 @@ export default function LeaderboardView({
       params.delete("roles");
     }
     params.delete("page"); // Reset pagination
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
     }
     setCurrentPage(1);
@@ -343,7 +349,7 @@ export default function LeaderboardView({
   const clearFilters = () => {
     const isMobile = typeof window !== "undefined" && window.innerWidth < 640;
     const params = new URLSearchParams(searchParams.toString());
-    if(isMobile){
+    if (isMobile) {
       setSearchQuery("");
       return;
     }
@@ -372,7 +378,7 @@ export default function LeaderboardView({
     // Reset to page 1 when page size changes
     params.delete("page");
     setCurrentPage(1);
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
     }
   };
@@ -385,7 +391,7 @@ export default function LeaderboardView({
       params.set("page", page.toString());
     }
     setCurrentPage(page);
-    if(typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
     }
   };
@@ -395,6 +401,7 @@ export default function LeaderboardView({
       updatePage(currentPage + 1);
     }
   };
+
 
   const goToPreviousPage = () => {
     if (currentPage > 1) {
@@ -415,7 +422,7 @@ export default function LeaderboardView({
     } else {
       params.delete("roles");
     }
-    if(typeof window !== 'undefined') window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+    if (typeof window !== 'undefined') window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
   };
 
   const filteredTopByActivity = useMemo(() => {
@@ -524,10 +531,12 @@ export default function LeaderboardView({
                         {sortBy === "points"
                           ? "Total Points"
                           : sortBy === "pr_opened"
-                          ? "PR Opened"
-                          : sortBy === "pr_merged"
-                          ? "PR Merged"
-                          : "Issue Opened"}
+                            ? "PR Opened"
+                            : sortBy === "pr_merged"
+                              ? "PR Merged"
+                              : sortBy === "reviews"
+                                ? "Review Submitted"
+                                : "Issue Opened"}
                       </span>
                     </button>
                   </div>
@@ -564,72 +573,97 @@ export default function LeaderboardView({
                     </PopoverTrigger>
                     <PopoverContent
                       align="end"
-                      className="w-56 bg-white dark:bg-[#07170f]"
+                      className="w-64 bg-white dark:bg-[#07170f] border-[#50B78B]/20"
                     >
-                      <div className="space-y-2">
-                        <h4 className="font-medium text-sm">
-                          Sort By
-                        </h4>
-                        <div className="space-y-0.5">
-                          {[
-                            { key: 'points' as SortBy, label: 'Total Points' },
-                            { key: 'pr_opened' as SortBy, label: 'PRs Opened' },
-                            { key: 'pr_merged' as SortBy, label: 'PRs Merged' },
-                            { key: 'issues' as SortBy, label: 'Issue Opened' },
-                          ].map((opt) => {
-                            const active = sortBy === opt.key;
-                            return (
-                              <button
-                                key={opt.key}
-                                onClick={(e) => {
-                                  setPopoverOpen(false);
-                                  setSortBy(opt.key as SortBy);
-                                  const params = new URLSearchParams(searchParams.toString());
-                                  if(opt.key === 'points'){
-                                    params.delete('sort');
-                                    params.delete('order');
-                                  }else{
-                                    params.set('sort', opt.key);
-                                    params.set('order', 'desc');
-                                  }
-                                  // Reset to page 1 when sort changes
-                                  params.delete('page');
-                                  setCurrentPage(1);
-                                  if(typeof window !== 'undefined') 
-                                    window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
-                                }}
-                                className={cn('w-full text-left px-4 py-2 cursor-pointer rounded-md text-sm', active ? 'bg-[#50B78B] text-white' : 'hover:bg-muted')}
-                                aria-pressed={active}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <div>{opt.label}</div>
-                                </div>
-                              </button>
-                            )
-                          })}
+                      <div className="space-y-4">
+                        {/* Sort By Section */}
+                        <div>
+                          <h4 className="font-semibold text-sm mb-3 text-foreground">
+                            Sort By
+                          </h4>
+                          <div className="space-y-1">
+                            {[
+                              { key: 'points' as SortBy, label: 'Total Points' },
+                              { key: 'pr_opened' as SortBy, label: 'PRs Opened' },
+                              { key: 'pr_merged' as SortBy, label: 'PRs Merged' },
+                              { key: 'issues' as SortBy, label: 'Issue Opened' },
+                              { key: 'reviews' as SortBy, label: 'Review Submitted' },
+                            ].map((opt) => {
+                              const active = sortBy === opt.key;
+                              return (
+                                <button
+                                  key={opt.key}
+                                  onClick={(e) => {
+                                    setPopoverOpen(false);
+                                    setSortBy(opt.key as SortBy);
+                                    const params = new URLSearchParams(searchParams.toString());
+                                    if (opt.key === 'points') {
+                                      params.delete('sort');
+                                      params.delete('order');
+                                    } else {
+                                      params.set('sort', opt.key);
+                                      params.set('order', 'desc');
+                                    }
+                                    params.delete('page');
+                                    setCurrentPage(1);
+                                    if (typeof window !== 'undefined')
+                                      window.history.replaceState(null, '', `${pathname}?${params.toString()}`);
+                                  }}
+                                  className={cn(
+                                    'w-full text-left px-3 py-2 cursor-pointer rounded-md text-sm font-medium transition-all',
+                                    active 
+                                      ? 'bg-[#50B78B] text-white shadow-sm' 
+                                      : 'hover:bg-[#50B78B]/10 text-foreground'
+                                  )}
+                                  aria-pressed={active}
+                                >
+                                  {opt.label}
+                                </button>
+                              )
+                            })}
+                          </div>
                         </div>
-                        <h4 className="font-medium text-sm">
-                          Role
-                        </h4>
-                        <div className="space-y-2 max-h-64 overflow-y-auto px-4">
-                          {availableRoles.map((role) => (
-                            <div
-                              key={role}
-                              className="flex items-center space-x-2"
-                            >
-                              <Checkbox
-                                id={role}
-                                checked={selectedRoles.has(role)}
-                                onCheckedChange={() => toggleRole(role)}
-                              />
+
+                        {/* Divider */}
+                        <div className="border-t border-border" />
+
+                        {/* Role Section */}
+                        <div>
+                          <h4 className="font-semibold text-sm mb-3 text-foreground">
+                            Role
+                          </h4>
+                          <div className="space-y-2">
+                            {availableRoles.map((role) => (
                               <label
-                                htmlFor={role}
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                                key={role}
+                                htmlFor={`role-${role}`}
+                                className={cn(
+                                  "flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all duration-200 group",
+                                  selectedRoles.has(role)
+                                    ? "bg-[#50B78B]/10 border border-[#50B78B]/30 shadow-sm"
+                                    : "bg-muted/30 hover:bg-muted/60 border border-transparent"
+                                )}
                               >
-                                {role}
+                                <Checkbox
+                                  id={`role-${role}`}
+                                  checked={selectedRoles.has(role)}
+                                  onCheckedChange={() => toggleRole(role)}
+                                  className={cn(
+                                    "data-[state=checked]:bg-[#50B78B] data-[state=checked]:border-[#50B78B] border-2",
+                                    "transition-all duration-200"
+                                  )}
+                                />
+                                <span className={cn(
+                                  "text-sm font-medium flex-1 transition-colors",
+                                  selectedRoles.has(role) 
+                                    ? "text-[#50B78B]" 
+                                    : "text-foreground group-hover:text-[#50B78B]"
+                                )}>
+                                  {role}
+                                </span>
                               </label>
-                            </div>
-                          ))}
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </PopoverContent>
@@ -643,9 +677,8 @@ export default function LeaderboardView({
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8 border-b">
             <div className="flex gap-2">
               {(["week", "month", "year"] as const).map((p) => {
-                // Preserve query parameters when switching periods, but reset page to 1
                 const params = new URLSearchParams(searchParams.toString());
-                params.delete("page"); // Reset pagination when switching periods
+                params.delete("page");
                 const href = `/leaderboard/${p}${params.toString() ? `?${params.toString()}` : ''}`;
                 return (
                   <Link
@@ -663,7 +696,7 @@ export default function LeaderboardView({
                 );
               })}
             </div>
-            
+
             {/* Entries per page selector */}
             <div className="flex items-center gap-2">
               <label htmlFor="page-size-select" className="text-sm text-muted-foreground whitespace-nowrap">
@@ -712,8 +745,8 @@ export default function LeaderboardView({
                   {entries.length === 0
                     ? "No contributors with points in this period"
                     : searchQuery
-                    ? `No contributors matching "${searchQuery}"`
-                    : "No contributors match the selected filters"}
+                      ? `No contributors matching "${searchQuery}"`
+                      : "No contributors match the selected filters"}
                 </p>
                 {(searchQuery || selectedRoles.size > 0 || sortBy !== "points") && (
                   <Button
@@ -771,7 +804,7 @@ export default function LeaderboardView({
                 {/* Calculate which page numbers to show */}
                 {(() => {
                   const pages: number[] = [];
-                  
+
                   if (totalPages <= 7) {
                     // Show all pages if 7 or fewer
                     for (let i = 1; i <= totalPages; i++) {
@@ -780,7 +813,7 @@ export default function LeaderboardView({
                   } else {
                     // Always show first page
                     pages.push(1);
-                    
+
                     if (currentPage <= 4) {
                       // Show first 5 pages, then ellipsis, then last
                       for (let i = 2; i <= 5; i++) {
@@ -859,7 +892,7 @@ export default function LeaderboardView({
                 {Object.entries(filteredTopByActivity).map(
                   ([activityName, contributors]) => {
                     const style = getActivityStyle(activityName);
-                    
+
                     return (
                       <Card key={activityName} className="overflow-hidden p-0">
                         <CardContent className="p-0">
