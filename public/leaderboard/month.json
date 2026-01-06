@@ -1,6 +1,6 @@
 {
   "period": "month",
-  "updatedAt": 1767661417714,
+  "updatedAt": 1767680548495,
   "startDate": "2025-12-07",
   "endDate": "2026-01-06",
   "hiddenRoles": [],
@@ -670,10 +670,14 @@
     {
       "username": "Atharva7126",
       "name": null,
-      "avatar_url": "https://avatars.githubusercontent.com/u/177391853?u=79266ed791029fdadb3001357630803bdfb93ee6&v=4",
+      "avatar_url": "https://avatars.githubusercontent.com/u/177391853?v=4",
       "role": "Contributor",
-      "total_points": 75,
+      "total_points": 77,
       "activity_breakdown": {
+        "Issue opened": {
+          "count": 15,
+          "points": 15
+        },
         "Review submitted": {
           "count": 1,
           "points": 4
@@ -685,13 +689,14 @@
         "PR merged": {
           "count": 8,
           "points": 40
-        },
-        "Issue opened": {
-          "count": 13,
-          "points": 13
         }
       },
       "daily_activity": [
+        {
+          "date": "2026-01-06",
+          "count": 2,
+          "points": 2
+        },
         {
           "date": "2026-01-05",
           "count": 1,
@@ -764,6 +769,20 @@
         }
       ],
       "activities": [
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-06T05:33:30Z",
+          "title": "Bug - leaderboard card layout resets when switching between weekly/monthly/yearly views",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/135",
+          "points": 1
+        },
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-06T04:55:47Z",
+          "title": "Feat - add skeleton loading cards for leaderboard page",
+          "link": "https://github.com/CircuitVerse/community-dashboard/issues/134",
+          "points": 1
+        },
         {
           "type": "Review submitted",
           "occured_at": "2026-01-05T14:46:32Z",
@@ -1437,8 +1456,12 @@
       "name": null,
       "avatar_url": "https://avatars.githubusercontent.com/u/158487820?v=4",
       "role": "Contributor",
-      "total_points": 55,
+      "total_points": 56,
       "activity_breakdown": {
+        "Issue opened": {
+          "count": 8,
+          "points": 8
+        },
         "PR opened": {
           "count": 9,
           "points": 18
@@ -1446,13 +1469,14 @@
         "PR merged": {
           "count": 6,
           "points": 30
-        },
-        "Issue opened": {
-          "count": 7,
-          "points": 7
         }
       },
       "daily_activity": [
+        {
+          "date": "2026-01-06",
+          "count": 1,
+          "points": 1
+        },
         {
           "date": "2025-12-31",
           "count": 3,
@@ -1505,6 +1529,13 @@
         }
       ],
       "activities": [
+        {
+          "type": "Issue opened",
+          "occured_at": "2026-01-06T05:48:08Z",
+          "title": "🐞 Bug - Favicon not showing on CircuitVerse main website",
+          "link": "https://github.com/CircuitVerse/CircuitVerse/issues/6569",
+          "points": 1
+        },
         {
           "type": "PR opened",
           "occured_at": "2025-12-31T16:33:42Z",
