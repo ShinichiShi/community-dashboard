@@ -9,8 +9,11 @@ const ORG = "CircuitVerse";
 const GITHUB_API = "https://api.github.com";
 const TOKEN = process.env.GITHUB_TOKEN;
 
+// If token is not available, skip analytics generation
 if (!TOKEN) {
-  throw new Error("❌ GITHUB_TOKEN is required");
+  console.log("⚠️  GITHUB_TOKEN not available. Skipping analytics generation.");
+  console.log("💡 Analytics will be generated during GitHub Actions workflow.");
+  process.exit(0);
 }
 
 // Ensure TOKEN is string type for the rest of the file
