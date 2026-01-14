@@ -37,6 +37,10 @@ export function IssueAgeDistribution() {
         }
         
         const result: AnalyticsData = await response.json();
+        if (!result.issueMetrics?.ageDistribution) {
+          throw new Error('Issue metrics data not available');
+        }
+        
         const ageData = result.issueMetrics.ageDistribution;
         
         const chartData: AgeDistributionData[] = [

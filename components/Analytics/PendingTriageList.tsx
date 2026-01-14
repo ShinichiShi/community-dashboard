@@ -101,7 +101,40 @@ export function PendingTriageList() {
     );
   }
 
-  const issuesPendingTriage = data?.issueMetrics?.issuesPendingTriage || [];
+  if (error) {
+    return (
+      <Card>
+        <CardContent className="pt-6">
+          <div className="text-center text-red-600 dark:text-red-400">
+            Error loading pending triage: {error}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!data?.issueMetrics) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <AlertTriangle className="h-5 w-5" />
+            Issues Pending Triage
+          </CardTitle>
+          <CardDescription>
+            Issues that need proper labeling and categorization
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-8 text-muted-foreground">
+            Analytics data is being generated. Please refresh in a moment.
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const issuesPendingTriage = data.issueMetrics.issuesPendingTriage || [];
 
   return (
     <Card>

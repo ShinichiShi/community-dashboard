@@ -34,7 +34,7 @@ export function TriageVelocityChart() {
         const result = await response.json();
         
         // Use real triage data if available
-        if (result.issueMetrics?.dailyTriageData) {
+        if (result.issueMetrics?.dailyTriageData && result.issueMetrics.dailyTriageData.length > 0) {
           const realData = result.issueMetrics.dailyTriageData.map((item: DailyTriageItem) => ({
             date: new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
             triaged: item.triaged,
@@ -75,6 +75,24 @@ export function TriageVelocityChart() {
         <CardContent className="pt-6">
           <div className="text-center text-red-600 dark:text-red-400">
             Error loading triage velocity: {error}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (!data || data.length === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle>Triage Velocity Trend</CardTitle>
+          <CardDescription>
+            Daily triage count and pending issues over the past 14 days
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-8 text-muted-foreground">
+            Analytics data is being generated. Please refresh in a moment.
           </div>
         </CardContent>
       </Card>
