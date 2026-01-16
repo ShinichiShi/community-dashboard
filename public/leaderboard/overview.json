@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1768438604077,
+  "updatedAt": 1768525144578,
   "period": "Last_30days",
   "repos": [
     {
@@ -11,16 +11,16 @@
       "stars": 99,
       "forks": 302,
       "current": {
-        "pr_opened": 22,
-        "pr_merged": 14,
+        "pr_opened": 21,
+        "pr_merged": 13,
         "issue_created": 18,
-        "currentTotalContribution": 54
+        "currentTotalContribution": 52
       },
       "previous": {
-        "pr_merged": 3
+        "pr_merged": 4
       },
       "growth": {
-        "pr_merged": 11
+        "pr_merged": 9
       }
     },
     {
@@ -29,19 +29,19 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1129,
-      "forks": 1871,
+      "stars": 1131,
+      "forks": 1873,
       "current": {
-        "pr_opened": 85,
+        "pr_opened": 88,
         "pr_merged": 9,
-        "issue_created": 36,
-        "currentTotalContribution": 130
+        "issue_created": 37,
+        "currentTotalContribution": 134
       },
       "previous": {
-        "pr_merged": 4
+        "pr_merged": 5
       },
       "growth": {
-        "pr_merged": 5
+        "pr_merged": 4
       }
     },
     {
@@ -51,18 +51,18 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/Interactive-Book",
       "stars": 158,
-      "forks": 232,
+      "forks": 233,
       "current": {
-        "pr_opened": 5,
-        "pr_merged": 0,
-        "issue_created": 2,
-        "currentTotalContribution": 7
+        "pr_opened": 6,
+        "pr_merged": 3,
+        "issue_created": 4,
+        "currentTotalContribution": 13
       },
       "previous": {
         "pr_merged": 2
       },
       "growth": {
-        "pr_merged": -2
+        "pr_merged": 1
       }
     },
     {
@@ -92,8 +92,8 @@
       "language": "Dart",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/mobile-app",
-      "stars": 86,
-      "forks": 127,
+      "stars": 88,
+      "forks": 128,
       "current": {
         "pr_opened": 8,
         "pr_merged": 3,
@@ -324,12 +324,12 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/cv-frontend-vue",
       "stars": 46,
-      "forks": 205,
+      "forks": 207,
       "current": {
-        "pr_opened": 60,
+        "pr_opened": 63,
         "pr_merged": 13,
-        "issue_created": 45,
-        "currentTotalContribution": 118
+        "issue_created": 46,
+        "currentTotalContribution": 122
       },
       "previous": {
         "pr_merged": 1
