@@ -78,8 +78,8 @@
         <rect x="0" y="0" width="180" height="10" rx="4"/>
       </clipPath>
       <g clip-path="url(#issuesClip)">
-        <rect x="0" y="0" width="48.93292682926829" height="10" fill="#22c55e"/>
-        <rect x="48.93292682926829" y="0" width="131.0670731707317" height="10" fill="#a855f7"/>
+        <rect x="0" y="0" width="48.974619289340104" height="10" fill="#22c55e"/>
+        <rect x="48.974619289340104" y="0" width="131.0253807106599" height="10" fill="#a855f7"/>
       </g>
     </g>
   
@@ -91,9 +91,9 @@
         <rect x="0" y="0" width="180" height="10" rx="4"/>
       </clipPath>
       <g clip-path="url(#prsClip)">
-        <rect x="0" y="0" width="29.568845618915162" height="10" fill="#22c55e"/>
-        <rect x="29.568845618915162" y="0" width="76.43949930458972" height="10" fill="#a855f7"/>
-        <rect x="106.00834492350488" y="0" width="73.99165507649514" height="10" fill="#ef4444"/>
+        <rect x="0" y="0" width="29.722222222222225" height="10" fill="#22c55e"/>
+        <rect x="29.722222222222225" y="0" width="76.36111111111111" height="10" fill="#a855f7"/>
+        <rect x="106.08333333333334" y="0" width="73.91666666666667" height="10" fill="#ef4444"/>
       </g>
     </g>
   
