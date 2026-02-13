@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1770858721092,
+  "updatedAt": 1770945364382,
   "period": "Last_30days",
   "repos": [
     {
@@ -30,18 +30,18 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
       "stars": 1148,
-      "forks": 1933,
+      "forks": 1935,
       "current": {
         "pr_opened": 131,
-        "pr_merged": 7,
-        "issue_created": 47,
-        "currentTotalContribution": 185
+        "pr_merged": 6,
+        "issue_created": 49,
+        "currentTotalContribution": 186
       },
       "previous": {
-        "pr_merged": 8
+        "pr_merged": 9
       },
       "growth": {
-        "pr_merged": -1
+        "pr_merged": -3
       }
     },
     {
@@ -95,10 +95,10 @@
       "stars": 90,
       "forks": 135,
       "current": {
-        "pr_opened": 6,
+        "pr_opened": 5,
         "pr_merged": 0,
-        "issue_created": 6,
-        "currentTotalContribution": 12
+        "issue_created": 5,
+        "currentTotalContribution": 10
       },
       "previous": {
         "pr_merged": 3
@@ -326,16 +326,16 @@
       "stars": 51,
       "forks": 230,
       "current": {
-        "pr_opened": 84,
-        "pr_merged": 25,
-        "issue_created": 49,
-        "currentTotalContribution": 158
+        "pr_opened": 81,
+        "pr_merged": 24,
+        "issue_created": 48,
+        "currentTotalContribution": 153
       },
       "previous": {
-        "pr_merged": 10
+        "pr_merged": 11
       },
       "growth": {
-        "pr_merged": 15
+        "pr_merged": 13
       }
     },
     {
@@ -410,16 +410,16 @@
       "stars": 9,
       "forks": 44,
       "current": {
-        "pr_opened": 29,
-        "pr_merged": 21,
-        "issue_created": 22,
-        "currentTotalContribution": 72
+        "pr_opened": 26,
+        "pr_merged": 16,
+        "issue_created": 19,
+        "currentTotalContribution": 61
       },
       "previous": {
-        "pr_merged": 80
+        "pr_merged": 85
       },
       "growth": {
-        "pr_merged": -59
+        "pr_merged": -69
       }
     }
   ]
