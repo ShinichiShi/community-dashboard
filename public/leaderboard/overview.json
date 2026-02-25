@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1771895421216,
+  "updatedAt": 1771982109981,
   "period": "Last_30days",
   "repos": [
     {
@@ -29,12 +29,12 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1163,
-      "forks": 1953,
+      "stars": 1164,
+      "forks": 1955,
       "current": {
-        "pr_opened": 155,
+        "pr_opened": 157,
         "pr_merged": 22,
-        "issue_created": 95,
+        "issue_created": 93,
         "currentTotalContribution": 272
       },
       "previous": {
@@ -93,12 +93,12 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/mobile-app",
       "stars": 90,
-      "forks": 137,
+      "forks": 138,
       "current": {
-        "pr_opened": 7,
+        "pr_opened": 8,
         "pr_merged": 0,
         "issue_created": 12,
-        "currentTotalContribution": 19
+        "currentTotalContribution": 20
       },
       "previous": {
         "pr_merged": 2
@@ -223,8 +223,8 @@
       "current": {
         "pr_opened": 1,
         "pr_merged": 0,
-        "issue_created": 5,
-        "currentTotalContribution": 6
+        "issue_created": 6,
+        "currentTotalContribution": 7
       },
       "previous": {
         "pr_merged": 0
@@ -323,19 +323,19 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/cv-frontend-vue",
-      "stars": 52,
-      "forks": 238,
+      "stars": 53,
+      "forks": 239,
       "current": {
-        "pr_opened": 65,
-        "pr_merged": 26,
-        "issue_created": 46,
-        "currentTotalContribution": 137
+        "pr_opened": 59,
+        "pr_merged": 25,
+        "issue_created": 44,
+        "currentTotalContribution": 128
       },
       "previous": {
-        "pr_merged": 15
+        "pr_merged": 18
       },
       "growth": {
-        "pr_merged": 11
+        "pr_merged": 7
       }
     },
     {
@@ -410,16 +410,16 @@
       "stars": 10,
       "forks": 46,
       "current": {
-        "pr_opened": 15,
+        "pr_opened": 14,
         "pr_merged": 9,
         "issue_created": 7,
-        "currentTotalContribution": 31
+        "currentTotalContribution": 30
       },
       "previous": {
-        "pr_merged": 90
+        "pr_merged": 84
       },
       "growth": {
-        "pr_merged": -81
+        "pr_merged": -75
       }
     }
   ]
