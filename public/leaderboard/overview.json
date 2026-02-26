@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1771982109981,
+  "updatedAt": 1772068117894,
   "period": "Last_30days",
   "repos": [
     {
@@ -13,8 +13,8 @@
       "current": {
         "pr_opened": 11,
         "pr_merged": 6,
-        "issue_created": 9,
-        "currentTotalContribution": 26
+        "issue_created": 10,
+        "currentTotalContribution": 27
       },
       "previous": {
         "pr_merged": 7
@@ -29,19 +29,19 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1164,
-      "forks": 1955,
+      "stars": 1163,
+      "forks": 1954,
       "current": {
-        "pr_opened": 157,
+        "pr_opened": 162,
         "pr_merged": 22,
-        "issue_created": 93,
-        "currentTotalContribution": 272
+        "issue_created": 94,
+        "currentTotalContribution": 278
       },
       "previous": {
-        "pr_merged": 7
+        "pr_merged": 6
       },
       "growth": {
-        "pr_merged": 15
+        "pr_merged": 16
       }
     },
     {
@@ -95,10 +95,10 @@
       "stars": 90,
       "forks": 138,
       "current": {
-        "pr_opened": 8,
+        "pr_opened": 10,
         "pr_merged": 0,
-        "issue_created": 12,
-        "currentTotalContribution": 20
+        "issue_created": 13,
+        "currentTotalContribution": 23
       },
       "previous": {
         "pr_merged": 2
@@ -223,8 +223,8 @@
       "current": {
         "pr_opened": 1,
         "pr_merged": 0,
-        "issue_created": 6,
-        "currentTotalContribution": 7
+        "issue_created": 8,
+        "currentTotalContribution": 9
       },
       "previous": {
         "pr_merged": 0
@@ -324,18 +324,18 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/cv-frontend-vue",
       "stars": 53,
-      "forks": 239,
+      "forks": 238,
       "current": {
-        "pr_opened": 59,
-        "pr_merged": 25,
-        "issue_created": 44,
-        "currentTotalContribution": 128
+        "pr_opened": 60,
+        "pr_merged": 22,
+        "issue_created": 43,
+        "currentTotalContribution": 125
       },
       "previous": {
-        "pr_merged": 18
+        "pr_merged": 22
       },
       "growth": {
-        "pr_merged": 7
+        "pr_merged": 0
       }
     },
     {
@@ -410,16 +410,16 @@
       "stars": 10,
       "forks": 46,
       "current": {
-        "pr_opened": 14,
-        "pr_merged": 9,
-        "issue_created": 7,
-        "currentTotalContribution": 30
+        "pr_opened": 11,
+        "pr_merged": 5,
+        "issue_created": 4,
+        "currentTotalContribution": 20
       },
       "previous": {
-        "pr_merged": 84
+        "pr_merged": 85
       },
       "growth": {
-        "pr_merged": -75
+        "pr_merged": -80
       }
     }
   ]
