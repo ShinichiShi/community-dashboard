@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1772068117894,
+  "updatedAt": 1772154474749,
   "period": "Last_30days",
   "repos": [
     {
@@ -9,7 +9,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerseDocs",
       "stars": 98,
-      "forks": 310,
+      "forks": 311,
       "current": {
         "pr_opened": 11,
         "pr_merged": 6,
@@ -29,13 +29,13 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1163,
-      "forks": 1954,
+      "stars": 1165,
+      "forks": 1956,
       "current": {
-        "pr_opened": 162,
+        "pr_opened": 157,
         "pr_merged": 22,
-        "issue_created": 94,
-        "currentTotalContribution": 278
+        "issue_created": 92,
+        "currentTotalContribution": 271
       },
       "previous": {
         "pr_merged": 6
@@ -95,10 +95,10 @@
       "stars": 90,
       "forks": 138,
       "current": {
-        "pr_opened": 10,
+        "pr_opened": 11,
         "pr_merged": 0,
-        "issue_created": 13,
-        "currentTotalContribution": 23
+        "issue_created": 14,
+        "currentTotalContribution": 25
       },
       "previous": {
         "pr_merged": 2
@@ -223,8 +223,8 @@
       "current": {
         "pr_opened": 1,
         "pr_merged": 0,
-        "issue_created": 8,
-        "currentTotalContribution": 9
+        "issue_created": 7,
+        "currentTotalContribution": 8
       },
       "previous": {
         "pr_merged": 0
@@ -324,18 +324,18 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/cv-frontend-vue",
       "stars": 53,
-      "forks": 238,
+      "forks": 239,
       "current": {
-        "pr_opened": 60,
-        "pr_merged": 22,
-        "issue_created": 43,
-        "currentTotalContribution": 125
+        "pr_opened": 58,
+        "pr_merged": 20,
+        "issue_created": 41,
+        "currentTotalContribution": 119
       },
       "previous": {
-        "pr_merged": 22
+        "pr_merged": 24
       },
       "growth": {
-        "pr_merged": 0
+        "pr_merged": -4
       }
     },
     {
