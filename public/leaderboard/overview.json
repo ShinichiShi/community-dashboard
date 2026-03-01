@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1772240530299,
+  "updatedAt": 1772327869593,
   "period": "Last_30days",
   "repos": [
     {
@@ -11,10 +11,10 @@
       "stars": 98,
       "forks": 311,
       "current": {
-        "pr_opened": 11,
+        "pr_opened": 13,
         "pr_merged": 6,
-        "issue_created": 10,
-        "currentTotalContribution": 27
+        "issue_created": 12,
+        "currentTotalContribution": 31
       },
       "previous": {
         "pr_merged": 7
@@ -29,19 +29,19 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1166,
-      "forks": 1960,
+      "stars": 1165,
+      "forks": 1963,
       "current": {
-        "pr_opened": 159,
-        "pr_merged": 22,
-        "issue_created": 89,
-        "currentTotalContribution": 270
+        "pr_opened": 161,
+        "pr_merged": 20,
+        "issue_created": 87,
+        "currentTotalContribution": 268
       },
       "previous": {
-        "pr_merged": 6
+        "pr_merged": 8
       },
       "growth": {
-        "pr_merged": 16
+        "pr_merged": 12
       }
     },
     {
@@ -93,12 +93,12 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/mobile-app",
       "stars": 90,
-      "forks": 138,
+      "forks": 139,
       "current": {
-        "pr_opened": 9,
+        "pr_opened": 10,
         "pr_merged": 0,
         "issue_created": 14,
-        "currentTotalContribution": 23
+        "currentTotalContribution": 24
       },
       "previous": {
         "pr_merged": 2
@@ -326,16 +326,16 @@
       "stars": 53,
       "forks": 239,
       "current": {
-        "pr_opened": 57,
-        "pr_merged": 20,
-        "issue_created": 41,
-        "currentTotalContribution": 118
+        "pr_opened": 50,
+        "pr_merged": 19,
+        "issue_created": 37,
+        "currentTotalContribution": 106
       },
       "previous": {
-        "pr_merged": 24
+        "pr_merged": 25
       },
       "growth": {
-        "pr_merged": -4
+        "pr_merged": -6
       }
     },
     {
@@ -416,10 +416,10 @@
         "currentTotalContribution": 20
       },
       "previous": {
-        "pr_merged": 83
+        "pr_merged": 82
       },
       "growth": {
-        "pr_merged": -78
+        "pr_merged": -77
       }
     }
   ]
