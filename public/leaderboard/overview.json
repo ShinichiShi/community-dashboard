@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1772673007486,
+  "updatedAt": 1772759656419,
   "period": "Last_30days",
   "repos": [
     {
@@ -11,16 +11,16 @@
       "stars": 98,
       "forks": 312,
       "current": {
-        "pr_opened": 14,
+        "pr_opened": 13,
         "pr_merged": 5,
-        "issue_created": 11,
-        "currentTotalContribution": 30
+        "issue_created": 10,
+        "currentTotalContribution": 28
       },
       "previous": {
-        "pr_merged": 8
+        "pr_merged": 7
       },
       "growth": {
-        "pr_merged": -3
+        "pr_merged": -2
       }
     },
     {
@@ -29,13 +29,13 @@
       "language": "JavaScript",
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/CircuitVerse",
-      "stars": 1167,
-      "forks": 1964,
+      "stars": 1169,
+      "forks": 1968,
       "current": {
-        "pr_opened": 151,
+        "pr_opened": 148,
         "pr_merged": 23,
         "issue_created": 84,
-        "currentTotalContribution": 258
+        "currentTotalContribution": 255
       },
       "previous": {
         "pr_merged": 7
@@ -324,18 +324,18 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/cv-frontend-vue",
       "stars": 54,
-      "forks": 239,
+      "forks": 241,
       "current": {
-        "pr_opened": 37,
+        "pr_opened": 38,
         "pr_merged": 16,
-        "issue_created": 35,
-        "currentTotalContribution": 88
+        "issue_created": 36,
+        "currentTotalContribution": 90
       },
       "previous": {
-        "pr_merged": 30
+        "pr_merged": 28
       },
       "growth": {
-        "pr_merged": -14
+        "pr_merged": -12
       }
     },
     {
@@ -416,10 +416,10 @@
         "currentTotalContribution": 17
       },
       "previous": {
-        "pr_merged": 65
+        "pr_merged": 60
       },
       "growth": {
-        "pr_merged": -61
+        "pr_merged": -56
       }
     }
   ]
