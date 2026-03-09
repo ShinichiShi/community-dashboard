@@ -1,5 +1,5 @@
 {
-  "updatedAt": 1772932227328,
+  "updatedAt": 1773018623977,
   "period": "Last_30days",
   "repos": [
     {
@@ -32,16 +32,16 @@
       "stars": 1171,
       "forks": 1972,
       "current": {
-        "pr_opened": 144,
+        "pr_opened": 143,
         "pr_merged": 23,
-        "issue_created": 87,
-        "currentTotalContribution": 254
+        "issue_created": 85,
+        "currentTotalContribution": 251
       },
       "previous": {
-        "pr_merged": 6
+        "pr_merged": 7
       },
       "growth": {
-        "pr_merged": 17
+        "pr_merged": 16
       }
     },
     {
@@ -51,7 +51,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/42944450?v=4",
       "html_url": "https://github.com/CircuitVerse/Interactive-Book",
       "stars": 160,
-      "forks": 239,
+      "forks": 240,
       "current": {
         "pr_opened": 2,
         "pr_merged": 0,
@@ -326,13 +326,13 @@
       "stars": 54,
       "forks": 242,
       "current": {
-        "pr_opened": 40,
-        "pr_merged": 15,
-        "issue_created": 42,
-        "currentTotalContribution": 97
+        "pr_opened": 39,
+        "pr_merged": 16,
+        "issue_created": 43,
+        "currentTotalContribution": 98
       },
       "previous": {
-        "pr_merged": 27
+        "pr_merged": 28
       },
       "growth": {
         "pr_merged": -12
@@ -416,10 +416,10 @@
         "currentTotalContribution": 15
       },
       "previous": {
-        "pr_merged": 47
+        "pr_merged": 42
       },
       "growth": {
-        "pr_merged": -43
+        "pr_merged": -38
       }
     }
   ]
