@@ -1,11 +1,11 @@
 {
   "organization": "CircuitVerse",
-  "lastUpdated": "2026-06-27T02:10:15.906Z",
+  "lastUpdated": "2026-06-28T02:31:32.303Z",
   "reviewMetrics": {
-    "totalReviews": 261,
-    "reviewsLast7Days": 31,
-    "reviewsLast30Days": 124,
-    "averageReviewTimeHours": -335.36,
+    "totalReviews": 266,
+    "reviewsLast7Days": 35,
+    "reviewsLast30Days": 126,
+    "averageReviewTimeHours": -144.72,
     "topReviewers": [
       {
         "username": "Nihal4777",
@@ -59,16 +59,11 @@
       }
     ],
     "reviewVelocity": {
-      "daily": 4.428571428571429,
-      "weekly": 31,
-      "monthly": 124
+      "daily": 5,
+      "weekly": 35,
+      "monthly": 126
     },
     "dailyReviewData": [
-      {
-        "date": "2026-06-14",
-        "reviews": 13,
-        "avgTimeHours": 50.933141025641035
-      },
       {
         "date": "2026-06-15",
         "reviews": 8,
@@ -131,6 +126,11 @@
       },
       {
         "date": "2026-06-27",
+        "reviews": 5,
+        "avgTimeHours": 336.7305
+      },
+      {
+        "date": "2026-06-28",
         "reviews": 0,
         "avgTimeHours": 0
       }
@@ -138,7 +138,7 @@
     "reviewStateDistribution": {
       "approved": 36,
       "changesRequested": 31,
-      "commented": 194,
+      "commented": 199,
       "pending": 175
     },
     "prsNeedingReview": [
@@ -150,7 +150,7 @@
         "createdAt": "2026-06-26T13:16:00Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1114",
         "repository": "cv-frontend-vue",
-        "ageHours": 12.9,
+        "ageHours": 37.3,
         "isDraft": false
       },
       {
@@ -161,7 +161,7 @@
         "createdAt": "2026-06-26T10:30:31Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1112",
         "repository": "cv-frontend-vue",
-        "ageHours": 15.7,
+        "ageHours": 40,
         "isDraft": false
       },
       {
@@ -172,7 +172,7 @@
         "createdAt": "2026-06-24T07:39:12Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1111",
         "repository": "cv-frontend-vue",
-        "ageHours": 66.5,
+        "ageHours": 90.9,
         "isDraft": false
       },
       {
@@ -183,7 +183,7 @@
         "createdAt": "2026-06-23T10:23:17Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7550",
         "repository": "CircuitVerse",
-        "ageHours": 87.8,
+        "ageHours": 112.1,
         "isDraft": false
       },
       {
@@ -194,7 +194,7 @@
         "createdAt": "2026-06-22T20:59:09Z",
         "url": "https://github.com/CircuitVerse/CircuitVerseDocs/pull/538",
         "repository": "CircuitVerseDocs",
-        "ageHours": 101.2,
+        "ageHours": 125.5,
         "isDraft": false
       },
       {
@@ -205,7 +205,7 @@
         "createdAt": "2026-06-21T02:34:34Z",
         "url": "https://github.com/CircuitVerse/Interactive-Book/pull/795",
         "repository": "Interactive-Book",
-        "ageHours": 143.6,
+        "ageHours": 167.9,
         "isDraft": false
       },
       {
@@ -216,7 +216,7 @@
         "createdAt": "2026-06-19T21:20:11Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1109",
         "repository": "cv-frontend-vue",
-        "ageHours": 172.8,
+        "ageHours": 197.2,
         "isDraft": false
       },
       {
@@ -227,7 +227,7 @@
         "createdAt": "2026-06-17T10:24:46Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1105",
         "repository": "cv-frontend-vue",
-        "ageHours": 231.8,
+        "ageHours": 256.1,
         "isDraft": false
       },
       {
@@ -238,7 +238,7 @@
         "createdAt": "2026-06-16T18:29:06Z",
         "url": "https://github.com/CircuitVerse/mobile-app/pull/624",
         "repository": "mobile-app",
-        "ageHours": 247.7,
+        "ageHours": 272,
         "isDraft": false
       },
       {
@@ -249,7 +249,7 @@
         "createdAt": "2026-06-15T22:29:31Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7517",
         "repository": "CircuitVerse",
-        "ageHours": 267.7,
+        "ageHours": 292,
         "isDraft": false
       },
       {
@@ -260,7 +260,7 @@
         "createdAt": "2026-06-15T22:21:57Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1102",
         "repository": "cv-frontend-vue",
-        "ageHours": 267.8,
+        "ageHours": 292.2,
         "isDraft": false
       },
       {
@@ -271,7 +271,7 @@
         "createdAt": "2026-06-15T19:42:08Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7514",
         "repository": "CircuitVerse",
-        "ageHours": 270.5,
+        "ageHours": 294.8,
         "isDraft": false
       },
       {
@@ -282,7 +282,7 @@
         "createdAt": "2026-06-14T20:21:41Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1095",
         "repository": "cv-frontend-vue",
-        "ageHours": 293.8,
+        "ageHours": 318.2,
         "isDraft": false
       },
       {
@@ -293,7 +293,7 @@
         "createdAt": "2026-06-14T19:22:57Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1094",
         "repository": "cv-frontend-vue",
-        "ageHours": 294.8,
+        "ageHours": 319.1,
         "isDraft": false
       },
       {
@@ -304,7 +304,7 @@
         "createdAt": "2026-06-14T18:11:27Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1093",
         "repository": "cv-frontend-vue",
-        "ageHours": 296,
+        "ageHours": 320.3,
         "isDraft": false
       },
       {
@@ -315,7 +315,7 @@
         "createdAt": "2026-06-14T17:40:43Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1092",
         "repository": "cv-frontend-vue",
-        "ageHours": 296.5,
+        "ageHours": 320.8,
         "isDraft": false
       },
       {
@@ -326,7 +326,7 @@
         "createdAt": "2026-06-14T13:26:34Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7513",
         "repository": "CircuitVerse",
-        "ageHours": 300.7,
+        "ageHours": 325.1,
         "isDraft": false
       },
       {
@@ -337,7 +337,7 @@
         "createdAt": "2026-06-14T09:57:41Z",
         "url": "https://github.com/CircuitVerse/Blog/pull/266",
         "repository": "Blog",
-        "ageHours": 304.2,
+        "ageHours": 328.6,
         "isDraft": false
       },
       {
@@ -348,7 +348,7 @@
         "createdAt": "2026-06-10T16:11:00Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/1090",
         "repository": "cv-frontend-vue",
-        "ageHours": 394,
+        "ageHours": 418.3,
         "isDraft": false
       },
       {
@@ -359,7 +359,7 @@
         "createdAt": "2026-06-10T09:06:35Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7504",
         "repository": "CircuitVerse",
-        "ageHours": 401.1,
+        "ageHours": 425.4,
         "isDraft": false
       }
     ],
@@ -373,7 +373,7 @@
         "url": "https://github.com/CircuitVerse/CircuitVerse/pull/7563",
         "repository": "CircuitVerse",
         "approvals": 1,
-        "ageHours": 39.7
+        "ageHours": 64
       },
       {
         "number": 593,
@@ -384,33 +384,27 @@
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/pull/593",
         "repository": "mobile-app",
         "approvals": 1,
-        "ageHours": 9158.7
+        "ageHours": 9183
       }
     ]
   },
   "issueMetrics": {
-    "totalIssues": 964,
-    "openIssues": 289,
-    "closedIssues": 675,
-    "pendingTriage": 239,
-    "recentlyTriaged": 12,
+    "totalIssues": 961,
+    "openIssues": 287,
+    "closedIssues": 674,
+    "pendingTriage": 237,
+    "recentlyTriaged": 9,
     "triageVelocity": {
-      "daily": 1.7142857142857142,
-      "weekly": 12
+      "daily": 1.2857142857142858,
+      "weekly": 9
     },
     "ageDistribution": {
-      "lessThan24h": 1,
+      "lessThan24h": 0,
       "oneToSevenDays": 7,
-      "sevenToThirtyDays": 17,
-      "moreThanThirtyDays": 214
+      "sevenToThirtyDays": 13,
+      "moreThanThirtyDays": 217
     },
     "dailyTriageData": [
-      {
-        "date": "2026-06-14",
-        "triaged": 0,
-        "pending": 0,
-        "total": 0
-      },
       {
         "date": "2026-06-15",
         "triaged": 2,
@@ -479,12 +473,18 @@
       },
       {
         "date": "2026-06-26",
-        "triaged": 1,
+        "triaged": 0,
         "pending": 1,
-        "total": 2
+        "total": 1
       },
       {
         "date": "2026-06-27",
+        "triaged": 1,
+        "pending": 0,
+        "total": 1
+      },
+      {
+        "date": "2026-06-28",
         "triaged": 0,
         "pending": 0,
         "total": 0
@@ -499,7 +499,7 @@
         "createdAt": "2026-06-26T11:35:48Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1113",
         "repository": "cv-frontend-vue",
-        "ageHours": 14.6,
+        "ageHours": 38.9,
         "labels": []
       },
       {
@@ -510,22 +510,11 @@
         "createdAt": "2026-06-25T10:03:46Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7562",
         "repository": "CircuitVerse",
-        "ageHours": 40.1,
+        "ageHours": 64.5,
         "labels": [
           "🌟 feature",
           "GSoC'26"
         ]
-      },
-      {
-        "number": 7559,
-        "title": "bug: sanitize_name before_action does not mutate the correct params key — project names stored unsanitized",
-        "author": "deepak0x",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/149673145?v=4",
-        "createdAt": "2026-06-24T10:13:33Z",
-        "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7559",
-        "repository": "CircuitVerse",
-        "ageHours": 63.9,
-        "labels": []
       },
       {
         "number": 7558,
@@ -535,7 +524,18 @@
         "createdAt": "2026-06-24T10:13:13Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7558",
         "repository": "CircuitVerse",
-        "ageHours": 64,
+        "ageHours": 88.3,
+        "labels": []
+      },
+      {
+        "number": 7559,
+        "title": "bug: sanitize_name before_action does not mutate the correct params key — project names stored unsanitized",
+        "author": "deepak0x",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/149673145?v=4",
+        "createdAt": "2026-06-24T10:13:33Z",
+        "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7559",
+        "repository": "CircuitVerse",
+        "ageHours": 88.3,
         "labels": []
       },
       {
@@ -546,7 +546,7 @@
         "createdAt": "2026-06-24T10:12:43Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7557",
         "repository": "CircuitVerse",
-        "ageHours": 64,
+        "ageHours": 88.3,
         "labels": []
       },
       {
@@ -557,7 +557,7 @@
         "createdAt": "2026-06-24T10:11:13Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7556",
         "repository": "CircuitVerse",
-        "ageHours": 64,
+        "ageHours": 88.3,
         "labels": []
       },
       {
@@ -568,7 +568,7 @@
         "createdAt": "2026-06-22T12:43:14Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7541",
         "repository": "CircuitVerse",
-        "ageHours": 109.5,
+        "ageHours": 133.8,
         "labels": []
       },
       {
@@ -579,7 +579,7 @@
         "createdAt": "2026-06-20T16:24:56Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1110",
         "repository": "cv-frontend-vue",
-        "ageHours": 153.8,
+        "ageHours": 178.1,
         "labels": [
           "🐞 bug"
         ]
@@ -592,7 +592,7 @@
         "createdAt": "2026-06-19T21:09:22Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1108",
         "repository": "cv-frontend-vue",
-        "ageHours": 173,
+        "ageHours": 197.4,
         "labels": [
           "🐞 bug"
         ]
@@ -605,7 +605,7 @@
         "createdAt": "2026-06-15T22:25:50Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7516",
         "repository": "CircuitVerse",
-        "ageHours": 267.7,
+        "ageHours": 292.1,
         "labels": [
           "🐞 bug",
           "GSoC'26"
@@ -619,7 +619,7 @@
         "createdAt": "2026-06-15T22:11:38Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1101",
         "repository": "cv-frontend-vue",
-        "ageHours": 268,
+        "ageHours": 292.3,
         "labels": [
           "🐞 bug"
         ]
@@ -632,7 +632,7 @@
         "createdAt": "2026-06-12T18:03:17Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7509",
         "repository": "CircuitVerse",
-        "ageHours": 344.1,
+        "ageHours": 368.5,
         "labels": []
       },
       {
@@ -643,7 +643,7 @@
         "createdAt": "2026-06-10T17:38:15Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7505",
         "repository": "CircuitVerse",
-        "ageHours": 392.5,
+        "ageHours": 416.9,
         "labels": [
           "GSoC'26"
         ]
@@ -656,7 +656,7 @@
         "createdAt": "2026-06-08T14:16:50Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/621",
         "repository": "mobile-app",
-        "ageHours": 443.9,
+        "ageHours": 468.2,
         "labels": [
           "UI"
         ]
@@ -669,7 +669,7 @@
         "createdAt": "2026-06-03T17:05:29Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7482",
         "repository": "CircuitVerse",
-        "ageHours": 561.1,
+        "ageHours": 585.4,
         "labels": [
           "GSoC'26"
         ]
@@ -682,7 +682,7 @@
         "createdAt": "2026-06-03T17:03:55Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7481",
         "repository": "CircuitVerse",
-        "ageHours": 561.1,
+        "ageHours": 585.5,
         "labels": [
           "GSoC'26"
         ]
@@ -695,7 +695,7 @@
         "createdAt": "2026-06-03T17:02:18Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7480",
         "repository": "CircuitVerse",
-        "ageHours": 561.1,
+        "ageHours": 585.5,
         "labels": []
       },
       {
@@ -706,7 +706,7 @@
         "createdAt": "2026-06-01T15:44:16Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1085",
         "repository": "cv-frontend-vue",
-        "ageHours": 610.4,
+        "ageHours": 634.8,
         "labels": [
           "🌟 feature"
         ]
@@ -719,7 +719,7 @@
         "createdAt": "2026-06-01T12:35:21Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7455",
         "repository": "CircuitVerse",
-        "ageHours": 613.6,
+        "ageHours": 637.9,
         "labels": [
           "🌟 feature",
           "GSoC'26"
@@ -733,7 +733,7 @@
         "createdAt": "2026-05-29T14:00:10Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1083",
         "repository": "cv-frontend-vue",
-        "ageHours": 684.2,
+        "ageHours": 708.5,
         "labels": [
           "🌟 feature"
         ]
@@ -746,7 +746,7 @@
         "createdAt": "2026-05-28T21:24:31Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/610",
         "repository": "mobile-app",
-        "ageHours": 700.8,
+        "ageHours": 725.1,
         "labels": [
           "GSoC'26",
           "CI/CD"
@@ -760,7 +760,7 @@
         "createdAt": "2026-05-28T21:19:56Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/609",
         "repository": "Interactive-Book",
-        "ageHours": 700.8,
+        "ageHours": 725.2,
         "labels": [
           "GSoC'26"
         ]
@@ -773,7 +773,7 @@
         "createdAt": "2026-05-28T15:40:32Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7444",
         "repository": "CircuitVerse",
-        "ageHours": 706.5,
+        "ageHours": 730.9,
         "labels": [
           "🐞 bug",
           "GSoC'26"
@@ -787,7 +787,7 @@
         "createdAt": "2026-05-28T07:34:07Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7443",
         "repository": "CircuitVerse",
-        "ageHours": 714.6,
+        "ageHours": 739,
         "labels": [
           "🐞 bug"
         ]
@@ -800,21 +800,10 @@
         "createdAt": "2026-05-28T05:27:08Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7442",
         "repository": "CircuitVerse",
-        "ageHours": 716.7,
+        "ageHours": 741.1,
         "labels": [
           "🐞 bug"
         ]
-      },
-      {
-        "number": 1070,
-        "title": "(GSoC'26) Week 3: Include SubCircuit support. Implement topological sorting (Kahn's Algorithm) for scope resolution.",
-        "author": "aryanndwi123",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
-        "createdAt": "2026-05-26T17:43:46Z",
-        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1070",
-        "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
-        "labels": []
       },
       {
         "number": 1076,
@@ -824,7 +813,7 @@
         "createdAt": "2026-05-26T17:47:36Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1076",
         "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
+        "ageHours": 776.7,
         "labels": []
       },
       {
@@ -835,51 +824,18 @@
         "createdAt": "2026-05-26T17:46:53Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1075",
         "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
+        "ageHours": 776.7,
         "labels": []
       },
       {
-        "number": 1074,
-        "title": "(GSoC'26) Week 7: Build the Idempotent Migration Tool to convert legacy .cv files.",
+        "number": 1070,
+        "title": "(GSoC'26) Week 3: Include SubCircuit support. Implement topological sorting (Kahn's Algorithm) for scope resolution.",
         "author": "aryanndwi123",
         "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
-        "createdAt": "2026-05-26T17:46:16Z",
-        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1074",
+        "createdAt": "2026-05-26T17:43:46Z",
+        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1070",
         "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
-        "labels": []
-      },
-      {
-        "number": 1073,
-        "title": "(GSoC'26) Week 6: Write any remaining tests for the saved data format. Finalise and set up the environment for the migration tool.",
-        "author": "aryanndwi123",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
-        "createdAt": "2026-05-26T17:45:46Z",
-        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1073",
-        "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
-        "labels": []
-      },
-      {
-        "number": 1072,
-        "title": "(GSoC'26) Week 5: Build the Export UI: CodeMirror JSON preview panel, download button, and clipboard copy.",
-        "author": "aryanndwi123",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
-        "createdAt": "2026-05-26T17:45:05Z",
-        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1072",
-        "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
-        "labels": []
-      },
-      {
-        "number": 1071,
-        "title": "(GSoC'26) Week 4: Write canonicalSchema.json. Integrate validation in importCanonical.js.",
-        "author": "aryanndwi123",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
-        "createdAt": "2026-05-26T17:44:19Z",
-        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1071",
-        "repository": "cv-frontend-vue",
-        "ageHours": 752.4,
+        "ageHours": 776.8,
         "labels": []
       },
       {
@@ -890,7 +846,51 @@
         "createdAt": "2026-05-26T17:42:53Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1069",
         "repository": "cv-frontend-vue",
-        "ageHours": 752.5,
+        "ageHours": 776.8,
+        "labels": []
+      },
+      {
+        "number": 1074,
+        "title": "(GSoC'26) Week 7: Build the Idempotent Migration Tool to convert legacy .cv files.",
+        "author": "aryanndwi123",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
+        "createdAt": "2026-05-26T17:46:16Z",
+        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1074",
+        "repository": "cv-frontend-vue",
+        "ageHours": 776.8,
+        "labels": []
+      },
+      {
+        "number": 1073,
+        "title": "(GSoC'26) Week 6: Write any remaining tests for the saved data format. Finalise and set up the environment for the migration tool.",
+        "author": "aryanndwi123",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
+        "createdAt": "2026-05-26T17:45:46Z",
+        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1073",
+        "repository": "cv-frontend-vue",
+        "ageHours": 776.8,
+        "labels": []
+      },
+      {
+        "number": 1072,
+        "title": "(GSoC'26) Week 5: Build the Export UI: CodeMirror JSON preview panel, download button, and clipboard copy.",
+        "author": "aryanndwi123",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
+        "createdAt": "2026-05-26T17:45:05Z",
+        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1072",
+        "repository": "cv-frontend-vue",
+        "ageHours": 776.8,
+        "labels": []
+      },
+      {
+        "number": 1071,
+        "title": "(GSoC'26) Week 4: Write canonicalSchema.json. Integrate validation in importCanonical.js.",
+        "author": "aryanndwi123",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/100300789?v=4",
+        "createdAt": "2026-05-26T17:44:19Z",
+        "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1071",
+        "repository": "cv-frontend-vue",
+        "ageHours": 776.8,
         "labels": []
       },
       {
@@ -901,7 +901,7 @@
         "createdAt": "2026-05-26T17:33:24Z",
         "url": "https://github.com/CircuitVerse/cv-frontend-vue/issues/1067",
         "repository": "cv-frontend-vue",
-        "ageHours": 752.6,
+        "ageHours": 777,
         "labels": []
       },
       {
@@ -912,7 +912,7 @@
         "createdAt": "2026-05-25T12:56:49Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7415",
         "repository": "CircuitVerse",
-        "ageHours": 781.2,
+        "ageHours": 805.6,
         "labels": [
           "🐞 bug",
           "pending triage"
@@ -926,7 +926,7 @@
         "createdAt": "2026-05-25T06:47:25Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7414",
         "repository": "CircuitVerse",
-        "ageHours": 787.4,
+        "ageHours": 811.7,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -940,7 +940,7 @@
         "createdAt": "2026-05-25T06:37:40Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7413",
         "repository": "CircuitVerse",
-        "ageHours": 787.5,
+        "ageHours": 811.9,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -954,7 +954,7 @@
         "createdAt": "2026-05-25T06:33:39Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7412",
         "repository": "CircuitVerse",
-        "ageHours": 787.6,
+        "ageHours": 812,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -968,7 +968,7 @@
         "createdAt": "2026-05-25T06:28:47Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7411",
         "repository": "CircuitVerse",
-        "ageHours": 787.7,
+        "ageHours": 812,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -982,7 +982,7 @@
         "createdAt": "2026-05-25T03:38:06Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7408",
         "repository": "CircuitVerse",
-        "ageHours": 790.5,
+        "ageHours": 814.9,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -996,21 +996,7 @@
         "createdAt": "2026-05-25T03:34:22Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7407",
         "repository": "CircuitVerse",
-        "ageHours": 790.6,
-        "labels": [
-          "🌟 feature",
-          "pending triage"
-        ]
-      },
-      {
-        "number": 7406,
-        "title": "Feature Roster sync functionality",
-        "author": "magic-peach",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/146705736?v=4",
-        "createdAt": "2026-05-25T03:27:41Z",
-        "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7406",
-        "repository": "CircuitVerse",
-        "ageHours": 790.7,
+        "ageHours": 815,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -1024,7 +1010,21 @@
         "createdAt": "2026-05-25T03:24:07Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7405",
         "repository": "CircuitVerse",
-        "ageHours": 790.8,
+        "ageHours": 815.1,
+        "labels": [
+          "🌟 feature",
+          "pending triage"
+        ]
+      },
+      {
+        "number": 7406,
+        "title": "Feature Roster sync functionality",
+        "author": "magic-peach",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/146705736?v=4",
+        "createdAt": "2026-05-25T03:27:41Z",
+        "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7406",
+        "repository": "CircuitVerse",
+        "ageHours": 815.1,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -1038,7 +1038,7 @@
         "createdAt": "2026-05-25T03:20:52Z",
         "url": "https://github.com/CircuitVerse/CircuitVerse/issues/7404",
         "repository": "CircuitVerse",
-        "ageHours": 790.8,
+        "ageHours": 815.2,
         "labels": [
           "🌟 feature",
           "pending triage"
@@ -1052,7 +1052,20 @@
         "createdAt": "2026-05-24T19:40:08Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/606",
         "repository": "mobile-app",
-        "ageHours": 798.5,
+        "ageHours": 822.9,
+        "labels": [
+          "GSoC'26"
+        ]
+      },
+      {
+        "number": 605,
+        "title": "Add Linting and Code Quality Checks",
+        "author": "SantamRC",
+        "authorAvatar": "https://avatars.githubusercontent.com/u/52635773?v=4",
+        "createdAt": "2026-05-24T19:29:41Z",
+        "url": "https://github.com/CircuitVerse/mobile-app/issues/605",
+        "repository": "Interactive-Book",
+        "ageHours": 823,
         "labels": [
           "GSoC'26"
         ]
@@ -1065,21 +1078,21 @@
         "createdAt": "2026-05-24T19:25:22Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/603",
         "repository": "mobile-app",
-        "ageHours": 798.7,
+        "ageHours": 823.1,
         "labels": [
           "GSoC'26",
           "UI"
         ]
       },
       {
-        "number": 605,
-        "title": "Add Linting and Code Quality Checks",
+        "number": 602,
+        "title": "Add Deep Linking",
         "author": "SantamRC",
         "authorAvatar": "https://avatars.githubusercontent.com/u/52635773?v=4",
-        "createdAt": "2026-05-24T19:29:41Z",
-        "url": "https://github.com/CircuitVerse/mobile-app/issues/605",
-        "repository": "Interactive-Book",
-        "ageHours": 798.7,
+        "createdAt": "2026-05-24T19:24:16Z",
+        "url": "https://github.com/CircuitVerse/mobile-app/issues/602",
+        "repository": "mobile-app",
+        "ageHours": 823.1,
         "labels": [
           "GSoC'26"
         ]
@@ -1092,20 +1105,7 @@
         "createdAt": "2026-05-24T19:26:26Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/604",
         "repository": "mobile-app",
-        "ageHours": 798.7,
-        "labels": [
-          "GSoC'26"
-        ]
-      },
-      {
-        "number": 602,
-        "title": "Add Deep Linking",
-        "author": "SantamRC",
-        "authorAvatar": "https://avatars.githubusercontent.com/u/52635773?v=4",
-        "createdAt": "2026-05-24T19:24:16Z",
-        "url": "https://github.com/CircuitVerse/mobile-app/issues/602",
-        "repository": "mobile-app",
-        "ageHours": 798.8,
+        "ageHours": 823.1,
         "labels": [
           "GSoC'26"
         ]
@@ -1118,7 +1118,7 @@
         "createdAt": "2026-05-24T19:23:41Z",
         "url": "https://github.com/CircuitVerse/mobile-app/issues/601",
         "repository": "Interactive-Book",
-        "ageHours": 798.8,
+        "ageHours": 823.1,
         "labels": [
           "GSoC'26"
         ]
